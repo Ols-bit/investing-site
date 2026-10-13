@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { LessonShell } from "@/components/lesson-shell";
 import { getLessonBySlug, getLessonProgress, lessons } from "@/lib/lessons";
 
-import WhyInvestLesson from "@/content/lessons/why-invest.mdx";
+import WhyInvestLesson from "@/content/lessons/01-why-invest.mdx";
 import AssetClassesLesson from "@/content/lessons/asset-classes.mdx";
 import RiskReturnAndDiversificationLesson from "@/content/lessons/risk-return-and-diversification.mdx";
 import FundsLesson from "@/content/lessons/funds-index-funds-and-etfs.mdx";

@@ -14,8 +14,9 @@ export const lessons: Lesson[] = [
       "Understand the idea behind investing and why long-term growth can matter more than short-term saving.",
     estimatedMinutes: 10,
     sources: [
-      "https://www.investor.gov/additional-resources",
-      "https://www.sec.gov/investor",
+      "https://www.investor.gov/",
+      "https://www.moneyhelper.org.uk/",
+      "https://www.investopedia.com/",
     ],
   },
   {

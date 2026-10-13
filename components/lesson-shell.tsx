@@ -42,7 +42,7 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
           </p>
         </header>
 
-        <div className="space-y-6 text-slate-700">
+        <div className="space-y-6 text-slate-700 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-slate-900 [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-900 [&_p]:leading-7 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_a]:font-medium [&_a]:text-emerald-800 [&_a]:underline [&_a]:decoration-emerald-300 [&_a]:underline-offset-4 [&_a:hover]:text-emerald-950">
           {children}
         </div>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { lessons } from "@/lib/lessons";
 
 export default function Home() {
   return (
@@ -20,6 +21,20 @@ export default function Home() {
         >
           Explore the learning path
           <span aria-hidden="true" className="ml-2">→</span>
+        </Link>
+        <Link
+          href={`/lessons/${lessons[0].slug}`}
+          className="mt-4 flex max-w-2xl flex-col rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-emerald-300 hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
+        >
+          <span className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-800">
+            Module 1
+          </span>
+          <span className="mt-2 text-lg font-semibold text-slate-900">
+            {lessons[0].title}
+          </span>
+          <span className="mt-1 text-sm leading-6 text-slate-600">
+            {lessons[0].summary}
+          </span>
         </Link>
       </section>
     </main>
