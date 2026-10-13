@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SiteNavigation } from "@/components/site-navigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,11 +24,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-slate-50 text-slate-900">
-        <div className="border-b border-slate-200 bg-amber-50/80 px-4 py-3 text-center text-sm text-slate-700">
-          Not financial advice. This site is for educational purposes only.
-        </div>
+      <body className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
+        <SiteNavigation />
         {children}
+        <footer className="mt-auto border-t border-slate-200 bg-white px-4 py-5 text-center text-sm text-slate-600">
+          Educational purposes only. Not financial advice.
+        </footer>
       </body>
     </html>
   );
