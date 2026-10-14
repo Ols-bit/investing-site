@@ -4,6 +4,26 @@ export type Lesson = {
   summary: string;
   estimatedMinutes: number;
   sources: string[];
+  track?: "manual";
+  stage?: ManualStageName;
+};
+
+export type ManualStageName =
+  | "The basics"
+  | "Your first trade"
+  | "Reading the market"
+  | "Managing risk"
+  | "Common mistakes";
+
+export type ManualStage = {
+  name: ManualStageName;
+  summary: string;
+  lessons: ManualLesson[];
+};
+
+export type ManualLesson = Lesson & {
+  track: "manual";
+  stage: ManualStageName;
 };
 
 export const lessons: Lesson[] = [
@@ -98,20 +118,138 @@ export const lessons: Lesson[] = [
   },
 ];
 
+export const manualStages: ManualStage[] = [
+  {
+    name: "The basics",
+    summary: "Know what you own and how a share changes hands.",
+    lessons: [
+      {
+        slug: "manual-what-is-a-stock",
+        title: "What is a stock?",
+        summary: "A share is a small ownership claim in a company, with a value that can rise or fall.",
+        estimatedMinutes: 7,
+        stage: "The basics",
+        track: "manual",
+        sources: ["https://www.investor.gov/introduction-investing/investing-basics/investment-products/stocks"],
+      },
+      {
+        slug: "manual-how-markets-work",
+        title: "How the market works",
+        summary: "Learn how exchanges, brokers, buyers and sellers connect.",
+        estimatedMinutes: 8,
+        stage: "The basics",
+        track: "manual",
+        sources: ["https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work"],
+      },
+    ],
+  },
+  {
+    name: "Your first trade",
+    summary: "Understand the instructions behind a trade before placing one.",
+    lessons: [
+      {
+        slug: "manual-order-types",
+        title: "Market orders and limit orders",
+        summary: "Compare an order to trade now with an order that sets a price boundary.",
+        estimatedMinutes: 8,
+        stage: "Your first trade",
+        track: "manual",
+        sources: ["https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders"],
+      },
+    ],
+  },
+  {
+    name: "Reading the market",
+    summary: "Read a quote and a chart without mistaking data for a forecast.",
+    lessons: [
+      {
+        slug: "manual-reading-quotes",
+        title: "Reading a stock quote",
+        summary: "Make sense of price, daily change, volume, high, low and previous close.",
+        estimatedMinutes: 8,
+        stage: "Reading the market",
+        track: "manual",
+        sources: ["https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work"],
+      },
+      {
+        slug: "manual-reading-charts",
+        title: "Reading a stock chart",
+        summary: "Understand time ranges, price axes and why a chart cannot tell you what comes next.",
+        estimatedMinutes: 9,
+        stage: "Reading the market",
+        track: "manual",
+        sources: ["https://www.finra.org/investors/insights/how-read-stock-chart"],
+      },
+    ],
+  },
+  {
+    name: "Managing risk",
+    summary: "Think about what could go wrong, and how much exposure you can carry.",
+    lessons: [
+      {
+        slug: "manual-diversification",
+        title: "Diversification in practice",
+        summary: "See how spreading exposure can reduce reliance on one company or sector.",
+        estimatedMinutes: 8,
+        stage: "Managing risk",
+        track: "manual",
+        sources: ["https://www.investor.gov/introduction-investing/investing-basics/asset-allocation-diversification"],
+      },
+      {
+        slug: "manual-position-sizing",
+        title: "Risk and position size",
+        summary: "Use a simple loss-limit example to understand the effect of position size.",
+        estimatedMinutes: 8,
+        stage: "Managing risk",
+        track: "manual",
+        sources: ["https://www.finra.org/investors/investing/investment-products/stocks"],
+      },
+    ],
+  },
+  {
+    name: "Common mistakes",
+    summary: "Account for costs, local tax rules and the habits that can undermine a plan.",
+    lessons: [
+      {
+        slug: "manual-fees-and-taxes",
+        title: "Fees and taxes",
+        summary: "Understand where investment costs and tax rules can affect a result.",
+        estimatedMinutes: 9,
+        stage: "Common mistakes",
+        track: "manual",
+        sources: ["https://www.investor.gov/introduction-investing/investing-basics/fees-and-expenses"],
+      },
+      {
+        slug: "manual-beginner-mistakes",
+        title: "Common beginner mistakes",
+        summary: "Recognise chasing headlines, overtrading and investing money needed soon.",
+        estimatedMinutes: 8,
+        stage: "Common mistakes",
+        track: "manual",
+        sources: ["https://www.finra.org/investors/insights/investing-basics"],
+      },
+    ],
+  },
+];
+
+export const manualLessons = manualStages.flatMap((stage) => stage.lessons);
+
 export function getLessonBySlug(slug: string) {
-  return lessons.find((lesson) => lesson.slug === slug);
+  return [...lessons, ...manualLessons].find((lesson) => lesson.slug === slug);
 }
 
 export function getLessonProgress(slug: string) {
-  const index = lessons.findIndex((lesson) => lesson.slug === slug);
+  const manualIndex = manualLessons.findIndex((lesson) => lesson.slug === slug);
+  const lessonList = manualIndex >= 0 ? manualLessons : lessons;
+  const index = manualIndex >= 0 ? manualIndex : lessonList.findIndex((lesson) => lesson.slug === slug);
 
   if (index < 0) {
-    return { current: 0, total: lessons.length, percent: 0 };
+    return { current: 0, total: lessonList.length, percent: 0 };
   }
 
   return {
     current: index + 1,
-    total: lessons.length,
-    percent: Math.round(((index + 1) / lessons.length) * 100),
+    total: lessonList.length,
+    percent: Math.round(((index + 1) / lessonList.length) * 100),
   };
 }

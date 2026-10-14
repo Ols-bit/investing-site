@@ -9,6 +9,8 @@ import {
   subscribeToWatchlist,
 } from "@/lib/watchlist-store";
 import { isStockQuote, type StockQuote, type StockSearchResult } from "@/lib/stock-types";
+import { CompanyNews } from "@/components/company-news";
+import { StockHistoryChart } from "@/components/stock-history-chart";
 import { StockSearch } from "@/components/stock-search";
 import { Watchlist } from "@/components/watchlist";
 
@@ -133,7 +135,7 @@ export function MarketsDashboard() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="stock-detail-title"
-            className="w-full max-w-lg border-t-4 border-amber-300 bg-white p-6 sm:p-7"
+            className="max-h-[90dvh] w-full max-w-2xl overflow-y-auto border-t-4 border-amber-300 bg-white p-5 sm:p-7"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -159,6 +161,7 @@ export function MarketsDashboard() {
                 <span aria-hidden="true">×</span>
               </button>
             </div>
+            <StockHistoryChart key={selectedStock.symbol} symbol={selectedStock.symbol} />
             {selectedQuote ? (
               <dl className="mt-6 grid grid-cols-2 gap-3">
                 {[
@@ -189,6 +192,7 @@ export function MarketsDashboard() {
                 Loading quote details…
               </p>
             )}
+            <CompanyNews symbol={selectedStock.symbol} />
           </section>
         </div>
       )}

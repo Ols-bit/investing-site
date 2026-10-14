@@ -22,7 +22,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Market data
 
-The Markets page uses Finnhub for stock searches and quotes. Set `FINNHUB_API_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration for deployment. Keep this variable private; do not rename it with a `NEXT_PUBLIC_` prefix.
+The Markets page uses Finnhub for stock searches and quotes. Set `FINNHUB_API_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration for deployment. Historical stock charts use Twelve Data and require `TWELVEDATA_API_KEY` in the same server-side configuration. Keep both variables private; do not rename them with a `NEXT_PUBLIC_` prefix.
 
 ## Learn More
 

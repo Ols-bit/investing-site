@@ -1,8 +1,19 @@
-import type { StockQuote, StockSearchResult } from "@/lib/stock-types";
+import {
+  isMarketNewsArticle,
+  type MarketNewsArticle,
+  type MarketNewsCategory,
+  type StockQuote,
+  type StockSearchResult,
+} from "@/lib/stock-types";
 
 const FINNHUB_BASE_URL = "https://finnhub.io/api/v1";
 
-type FinnhubFailureKind = "missing-key" | "rate-limit" | "unavailable" | "no-quote";
+type FinnhubFailureKind =
+  | "missing-key"
+  | "rate-limit"
+  | "unavailable"
+  | "no-quote"
+  | "no-news";
 
 export class FinnhubError extends Error {
   constructor(readonly kind: FinnhubFailureKind) {
@@ -106,6 +117,54 @@ export async function searchStocks(query: string): Promise<StockSearchResult[]> 
     .slice(0, 8);
 }
 
+export async function getMarketNews(
+  category: MarketNewsCategory,
+): Promise<MarketNewsArticle[]> {
+  const result = await requestFinnhub(
+    `/news?category=${encodeURIComponent(category)}`,
+    300,
+  );
+  if (!Array.isArray(result)) {
+    throw new FinnhubError("no-news");
+  }
+  return result.filter(isMarketNewsArticle).map((article) => ({
+    id: article.id,
+    headline: article.headline,
+    source: article.source,
+    summary: article.summary,
+    url: article.url,
+    image: typeof article.image === "string" ? article.image : "",
+    datetime: article.datetime,
+    related: typeof article.related === "string" ? article.related : "",
+    category: typeof article.category === "string" ? article.category : category,
+  }));
+}
+
+export async function getCompanyNews(symbol: string): Promise<MarketNewsArticle[]> {
+  const to = new Date();
+  const from = new Date(to);
+  from.setUTCDate(from.getUTCDate() - 7);
+  const dateString = (date: Date) => date.toISOString().slice(0, 10);
+  const result = await requestFinnhub(
+    `/company-news?symbol=${encodeURIComponent(symbol)}&from=${dateString(from)}&to=${dateString(to)}`,
+    300,
+  );
+  if (!Array.isArray(result)) {
+    throw new FinnhubError("no-news");
+  }
+  return result.filter(isMarketNewsArticle).map((article) => ({
+    id: article.id,
+    headline: article.headline,
+    source: article.source,
+    summary: article.summary,
+    url: article.url,
+    image: typeof article.image === "string" ? article.image : "",
+    datetime: article.datetime,
+    related: typeof article.related === "string" ? article.related : symbol,
+    category: typeof article.category === "string" ? article.category : "",
+  }));
+}
+
 export function getFinnhubErrorResponse(error: unknown): Response {
   if (error instanceof FinnhubError) {
     const responseByKind: Record<FinnhubFailureKind, { status: number; message: string }> = {
@@ -124,6 +183,10 @@ export function getFinnhubErrorResponse(error: unknown): Response {
       "no-quote": {
         status: 404,
         message: "No recent quote is available for this symbol.",
+      },
+      "no-news": {
+        status: 502,
+        message: "News is temporarily unavailable. Please try again later.",
       },
     };
     const { status, message } = responseByKind[error.kind];

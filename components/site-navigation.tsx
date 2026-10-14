@@ -6,9 +6,10 @@ import { useState } from "react";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
+  { href: "/manual", label: "Manual" },
   { href: "/markets", label: "Markets" },
   { href: "/news", label: "News" },
-  { href: "/learn", label: "Learn" },
+  { href: "/learn", label: "Lessons" },
   { href: "/tools", label: "Tools" },
 ];
 

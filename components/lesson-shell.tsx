@@ -14,13 +14,14 @@ type LessonShellProps = {
 
 export function LessonShell({ lesson, current, total, children }: LessonShellProps) {
   const percent = Math.round((current / total) * 100);
+  const backHref = lesson.track === "manual" ? "/manual" : "/learn";
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
       <FadeInSection className="mb-10">
         <div className="border-b-2 border-slate-950 pb-4">
           <div className="mb-3 flex items-center justify-between gap-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-700">
-            <span>Module {current} of {total}</span>
+            <span>{lesson.track === "manual" ? "Lesson" : "Module"} {current} of {total}</span>
             <span>{percent}% complete</span>
           </div>
 
@@ -37,7 +38,7 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
       <article className="bg-white px-5 py-7 sm:px-9 sm:py-10">
         <header className="mb-9 border-b border-slate-300 pb-8">
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-teal-800">
-            Module {current} / {total}
+            {lesson.track === "manual" ? "Trading manual" : "Learning path"}
           </p>
           <h1 className="max-w-4xl text-5xl font-extrabold tracking-tight text-slate-950 sm:text-6xl">
             {lesson.title}
@@ -57,10 +58,10 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
               Sources
             </p>
             <Link
-              href="/"
+              href={backHref}
               className="text-sm font-bold text-teal-800 transition-colors hover:text-slate-950"
             >
-              Back to modules
+              {lesson.track === "manual" ? "Back to manual" : "Back to modules"}
             </Link>
           </div>
 
