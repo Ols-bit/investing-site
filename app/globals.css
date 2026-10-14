@@ -1,46 +1,115 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --ink: #183027;
+  --paper: #f5f1e6;
+  --citron: #d8eb68;
+  --tomato: #ed6246;
+  --muted: #65736a;
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-bricolage);
+
+  --color-white: var(--paper);
+  --color-black: var(--ink);
+  --color-slate-50: var(--paper);
+  --color-slate-100: color-mix(in srgb, var(--paper), var(--ink) 5%);
+  --color-slate-200: color-mix(in srgb, var(--paper), var(--ink) 12%);
+  --color-slate-300: color-mix(in srgb, var(--paper), var(--ink) 22%);
+  --color-slate-400: color-mix(in srgb, var(--paper), var(--ink) 36%);
+  --color-slate-500: var(--muted);
+  --color-slate-600: color-mix(in srgb, var(--ink), var(--paper) 28%);
+  --color-slate-700: var(--ink);
+  --color-slate-800: var(--ink);
+  --color-slate-900: var(--ink);
+  --color-slate-950: var(--ink);
+
+  --color-teal-50: color-mix(in srgb, var(--paper), var(--citron) 30%);
+  --color-teal-100: color-mix(in srgb, var(--paper), var(--citron) 48%);
+  --color-teal-200: color-mix(in srgb, var(--paper), var(--citron) 68%);
+  --color-teal-300: var(--citron);
+  --color-teal-400: color-mix(in srgb, var(--citron), var(--ink) 12%);
+  --color-teal-500: color-mix(in srgb, var(--citron), var(--ink) 22%);
+  --color-teal-600: color-mix(in srgb, var(--ink), var(--citron) 30%);
+  --color-teal-700: var(--ink);
+  --color-teal-800: var(--ink);
+  --color-teal-900: var(--ink);
+  --color-teal-950: var(--ink);
+
+  --color-emerald-50: color-mix(in srgb, var(--paper), var(--citron) 30%);
+  --color-emerald-100: color-mix(in srgb, var(--paper), var(--citron) 48%);
+  --color-emerald-200: color-mix(in srgb, var(--paper), var(--citron) 68%);
+  --color-emerald-300: var(--citron);
+  --color-emerald-400: color-mix(in srgb, var(--citron), var(--ink) 12%);
+  --color-emerald-500: color-mix(in srgb, var(--citron), var(--ink) 22%);
+  --color-emerald-700: var(--ink);
+  --color-emerald-900: var(--ink);
+
+  --color-amber-50: color-mix(in srgb, var(--paper), var(--tomato) 14%);
+  --color-amber-100: color-mix(in srgb, var(--paper), var(--tomato) 24%);
+  --color-amber-200: color-mix(in srgb, var(--paper), var(--tomato) 45%);
+  --color-amber-300: var(--tomato);
+  --color-amber-500: var(--tomato);
+  --color-amber-700: var(--ink);
+  --color-amber-800: var(--ink);
+  --color-amber-900: var(--ink);
+  --color-amber-950: var(--ink);
+
+  --color-rose-50: color-mix(in srgb, var(--paper), var(--tomato) 14%);
+  --color-rose-100: color-mix(in srgb, var(--paper), var(--tomato) 24%);
+  --color-rose-200: color-mix(in srgb, var(--paper), var(--tomato) 45%);
+  --color-rose-300: var(--tomato);
+  --color-rose-400: var(--tomato);
+  --color-rose-500: var(--tomato);
+  --color-rose-700: color-mix(in srgb, var(--tomato), var(--ink) 35%);
+  --color-rose-900: var(--ink);
+
+  --color-sky-50: color-mix(in srgb, var(--paper), var(--citron) 30%);
+  --color-sky-100: color-mix(in srgb, var(--paper), var(--citron) 48%);
+  --color-sky-200: color-mix(in srgb, var(--paper), var(--citron) 68%);
+  --color-sky-800: var(--ink);
 }
 
-@keyframes answer-correct {
-  0% {
-    transform: scale(0.98);
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: -0.045em;
   }
-  60% {
-    transform: scale(1.01);
+
+  h1 {
+    font-weight: 800;
+    line-height: 0.98;
   }
-  100% {
-    transform: scale(1);
+
+  h2,
+  h3 {
+    font-weight: 700;
   }
 }
 
-@keyframes answer-incorrect {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-4px);
-  }
-  75% {
-    transform: translateX(4px);
+@keyframes market-ticker {
+  to {
+    transform: translateX(-50%);
   }
 }
 
-.animate-answer-correct {
-  animation: answer-correct 280ms ease-out;
+.market-ticker-track {
+  animation: market-ticker 34s linear infinite;
 }
 
-.animate-answer-incorrect {
-  animation: answer-incorrect 280ms ease-in-out;
+.market-ticker:hover .market-ticker-track,
+.market-ticker:focus-within .market-ticker-track {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-answer-correct,
-  .animate-answer-incorrect {
+  .market-ticker-track {
     animation: none;
   }
 }

@@ -40,7 +40,7 @@ export function ForAge({
   const content = ageGroup ? ageContent[ageGroupProp[ageGroup]] : undefined;
 
   return (
-    <aside className="my-6 rounded-2xl border border-teal-200 bg-teal-50/80 p-5 text-slate-800 shadow-sm dark:border-teal-300/20 dark:bg-teal-300/[0.07] dark:text-slate-100">
+    <aside className="my-6 border-l-4 border-amber-300 bg-teal-50 p-5 text-slate-800">
       {content ?? fallback}
     </aside>
   );

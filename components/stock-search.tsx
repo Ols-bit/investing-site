@@ -168,12 +168,12 @@ export function StockSearch({ onSelect }: StockSearchProps) {
             activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
           }
           placeholder="Search by company or symbol"
-          className="w-full rounded-2xl border border-slate-300 bg-white py-3.5 pl-12 pr-4 text-sm text-slate-950 shadow-sm outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10 dark:border-white/15 dark:bg-slate-900 dark:text-white dark:focus:border-teal-300 dark:focus:ring-teal-300/10"
+          className="w-full border border-slate-300 bg-white py-3.5 pl-12 pr-4 text-sm text-slate-950 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20"
         />
       </div>
 
       {dropdownVisible && (
-        <div className="absolute z-20 mt-2 w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-950/10 dark:border-white/10 dark:bg-slate-900">
+        <div className="absolute z-20 mt-2 w-full overflow-hidden border border-slate-300 bg-white">
           {loading && (
             <p className="px-4 py-3 text-sm text-slate-500 dark:text-slate-300">Searching…</p>
           )}

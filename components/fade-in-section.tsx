@@ -46,7 +46,7 @@ export function FadeInSection({ children, className = "" }: FadeInSectionProps) 
   return (
     <div
       ref={sectionRef}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none data-[reveal=hidden]:translate-y-5 data-[reveal=hidden]:opacity-0 ${className}`}
+      className={`transition-all duration-350 ease-out motion-reduce:transition-none data-[reveal=hidden]:translate-y-2 data-[reveal=hidden]:opacity-0 ${className}`}
     >
       {children}
     </div>

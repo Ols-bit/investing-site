@@ -17,16 +17,16 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-      <FadeInSection className="mb-8">
-        <div className="rounded-2xl border border-teal-200 bg-teal-50/80 p-4 shadow-sm shadow-teal-950/5 dark:border-teal-300/15 dark:bg-teal-300/[0.06] dark:shadow-black/10">
-          <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.18em] text-teal-950 dark:text-teal-100">
-          <span>Module {current} of {total}</span>
-          <span>{percent}% through learning path</span>
+      <FadeInSection className="mb-10">
+        <div className="border-b-2 border-slate-950 pb-4">
+          <div className="mb-3 flex items-center justify-between gap-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-700">
+            <span>Module {current} of {total}</span>
+            <span>{percent}% complete</span>
           </div>
 
-          <div className="h-2 w-full overflow-hidden rounded-full bg-teal-950/10 dark:bg-white/10">
+          <div className="h-2 w-full overflow-hidden bg-slate-200">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-400 transition-all duration-500"
+              className="h-full bg-teal-700 transition-all duration-300"
               style={{ width: `${percent}%` }}
             />
           </div>
@@ -34,40 +34,40 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
       </FadeInSection>
 
       <FadeInSection>
-      <article className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-black/20 sm:p-8 lg:p-10">
-        <header className="mb-8 border-b border-slate-200 pb-6 dark:border-white/10">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-teal-800 dark:text-teal-200">
-            Learning path
+      <article className="bg-white px-5 py-7 sm:px-9 sm:py-10">
+        <header className="mb-9 border-b border-slate-300 pb-8">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-teal-800">
+            Module {current} / {total}
           </p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-4xl">
+          <h1 className="max-w-4xl text-5xl font-extrabold tracking-tight text-slate-950 sm:text-6xl">
             {lesson.title}
           </h1>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700 dark:text-slate-300">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             {lesson.summary}
           </p>
         </header>
 
-        <div className="space-y-6 text-slate-700 dark:text-slate-300 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-slate-950 dark:[&_h2]:text-white [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-950 dark:[&_h3]:text-white [&_p]:leading-7 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_a]:font-medium [&_a]:text-teal-800 [&_a]:underline [&_a]:decoration-teal-300 [&_a]:underline-offset-4 [&_a:hover]:text-teal-950 dark:[&_a]:text-teal-200 dark:[&_a]:decoration-teal-500 dark:[&_a:hover]:text-teal-100 dark:[&_table]:border-white/10 dark:[&_th]:border-white/10 dark:[&_td]:border-white/10 dark:[&_thead]:bg-slate-800 dark:[&_thead]:text-slate-100 dark:[&_tbody_tr:nth-child(even)]:bg-white/[0.03] dark:[&_tbody_th]:text-slate-100">
+        <div className="space-y-6 text-slate-700 [&_h2]:mt-12 [&_h2]:border-l-4 [&_h2]:border-amber-300 [&_h2]:pl-4 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-slate-950 [&_h3]:mt-8 [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-slate-950 [&_p]:leading-8 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_a]:font-semibold [&_a]:text-teal-800 [&_a]:underline [&_a]:decoration-teal-300 [&_a]:underline-offset-4 [&_a:hover]:text-slate-950 [&_table]:border-slate-300 [&_th]:border-slate-300 [&_td]:border-slate-300 [&_thead]:bg-slate-100 [&_thead]:text-slate-950 [&_tbody_tr:nth-child(even)]:bg-slate-100 [&_tbody_th]:text-slate-950">
           {children}
         </div>
 
-        <footer className="mt-10 border-t border-slate-200 pt-6 dark:border-white/10">
+        <footer className="mt-12 border-t-2 border-slate-950 pt-6">
           <div className="mb-3 flex items-center justify-between gap-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">
               Sources
             </p>
             <Link
               href="/"
-              className="text-sm font-semibold text-teal-800 transition-colors hover:text-teal-950 dark:text-teal-200 dark:hover:text-teal-100"
+              className="text-sm font-bold text-teal-800 transition-colors hover:text-slate-950"
             >
               Back to modules
             </Link>
           </div>
 
-          <ul className="space-y-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+          <ul className="space-y-2 text-sm leading-6 text-slate-600">
             {lesson.sources.map((source) => (
               <li key={source}>
-                <a href={source} target="_blank" rel="noreferrer" className="underline decoration-slate-300 underline-offset-4 transition-colors hover:text-teal-800 dark:decoration-slate-600 dark:hover:text-teal-200">
+                <a href={source} target="_blank" rel="noreferrer" className="underline decoration-slate-300 underline-offset-4 transition-colors hover:text-teal-800">
                   {source}
                 </a>
               </li>

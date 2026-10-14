@@ -232,7 +232,7 @@ export function LessonCompletionButton({ lessonId }: { lessonId: string }) {
   const isComplete = lessonProgress?.completed ?? false;
 
   return (
-    <div className="mt-6 border-t border-slate-200 pt-5 dark:border-white/10">
+    <div className="mt-6 border-t border-slate-200 pt-5">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-sm font-semibold text-slate-900 dark:text-white">
@@ -249,13 +249,13 @@ export function LessonCompletionButton({ lessonId }: { lessonId: string }) {
           type="button"
           disabled={!ready || isComplete}
           onClick={() => markComplete(lessonId)}
-          className="inline-flex min-h-11 items-center justify-center rounded-full bg-teal-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 disabled:cursor-default disabled:bg-teal-100 disabled:text-teal-950 dark:bg-teal-300 dark:text-slate-950 dark:hover:bg-teal-200 dark:focus-visible:outline-teal-300 dark:disabled:bg-teal-300/15 dark:disabled:text-teal-100"
+          className="inline-flex min-h-11 items-center justify-center bg-teal-700 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 disabled:cursor-default disabled:bg-teal-100 disabled:text-teal-950"
         >
           {isComplete ? "Complete" : "Mark lesson as complete"}
         </button>
       </div>
       {storageError && (
-        <p className="mt-4 rounded-xl border border-rose-300 bg-rose-50 px-4 py-3 text-sm leading-6 text-rose-950 dark:border-rose-300/30 dark:bg-rose-300/10 dark:text-rose-100" role="alert">
+        <p className="mt-4 border-l-4 border-rose-500 bg-rose-50 px-4 py-3 text-sm leading-6 text-rose-950" role="alert">
           {storageError}
         </p>
       )}
@@ -271,7 +271,7 @@ export function LessonCompletionBadge({ lessonId }: { lessonId: string }) {
   }
 
   return (
-    <span className="rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-semibold text-emerald-950 dark:bg-emerald-300/15 dark:text-emerald-200">
+    <span className="border-l-2 border-teal-700 pl-2 text-xs font-bold uppercase tracking-wide text-teal-800">
       Completed
     </span>
   );
@@ -286,10 +286,10 @@ export function LearningProgressSummary({ lessonIds }: { lessonIds: string[] }) 
     <section
       aria-label="Your lesson progress"
       aria-busy={!ready}
-      className="mb-8 rounded-2xl border border-teal-200 bg-teal-50/80 p-5 shadow-sm shadow-teal-950/5 dark:border-teal-300/15 dark:bg-teal-300/[0.06] dark:shadow-black/10"
+      className="mb-8 border-y border-slate-300 bg-teal-50 px-5 py-5"
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm font-semibold text-teal-950 dark:text-teal-100">
-        <span>Your learning progress</span>
+        <span className="font-display text-lg">Your learning progress</span>
         <span>{completedCount} of {lessonIds.length} lessons complete ({percent}%)</span>
       </div>
       <div
@@ -297,16 +297,16 @@ export function LearningProgressSummary({ lessonIds }: { lessonIds: string[] }) 
         aria-valuemax={100}
         aria-valuemin={0}
         aria-valuenow={percent}
-        className="h-2.5 w-full overflow-hidden rounded-full bg-teal-950/10 dark:bg-white/10"
+        className="h-2.5 w-full overflow-hidden bg-slate-200"
         role="progressbar"
       >
         <div
-          className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-400 transition-all duration-500"
+          className="h-full bg-teal-700 transition-all duration-300"
           style={{ width: `${percent}%` }}
         />
       </div>
       {storageError && (
-        <p className="mt-4 rounded-xl border border-rose-300 bg-rose-50 px-4 py-3 text-sm leading-6 text-rose-950 dark:border-rose-300/30 dark:bg-rose-300/10 dark:text-rose-100" role="alert">
+        <p className="mt-4 border-l-4 border-rose-500 bg-rose-50 px-4 py-3 text-sm leading-6 text-rose-950" role="alert">
           {storageError}
         </p>
       )}

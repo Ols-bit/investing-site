@@ -158,16 +158,16 @@ export function AgeGroupProvider({ children }: { children: ReactNode }) {
           aria-live="polite"
           className="fixed inset-0 z-[100] grid place-items-center bg-slate-950 text-white"
         >
-          <p className="animate-pulse text-sm font-medium tracking-wide text-teal-100">
+          <p           className="text-sm font-medium tracking-wide text-teal-100">
             Getting things ready…
           </p>
         </div>
       ) : isDialogOpen ? (
-        <div className="fixed inset-0 z-[100] grid place-items-center overflow-y-auto bg-slate-950/75 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[100] grid place-items-center overflow-y-auto bg-slate-950/80 p-4">
           <section
             aria-labelledby="age-group-title"
             aria-modal="true"
-            className="my-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-white p-6 text-slate-900 shadow-2xl shadow-black/40 dark:bg-slate-900 dark:text-white sm:p-9"
+            className="my-auto w-full max-w-xl border-t-4 border-teal-300 bg-white p-6 text-slate-900 sm:p-9"
             onKeyDown={(event) => {
               if (event.key === "Escape") {
                 event.preventDefault();
@@ -215,7 +215,7 @@ export function AgeGroupProvider({ children }: { children: ReactNode }) {
                       lastChoiceRef.current = button;
                     }
                   }}
-                  className="min-h-16 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-lg font-semibold text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-400 hover:bg-teal-50 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-white dark:hover:border-teal-300 dark:hover:bg-teal-300/10 dark:focus-visible:outline-teal-300"
+                  className="min-h-16 border border-slate-300 bg-slate-50 px-5 py-4 text-left text-lg font-semibold text-slate-900 transition-colors duration-200 hover:border-teal-700 hover:bg-teal-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700"
                   onClick={() => saveAgeGroup(group)}
                   type="button"
                 >

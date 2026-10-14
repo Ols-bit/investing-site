@@ -79,16 +79,16 @@ export function MarketsDashboard() {
   return (
     <>
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-        <section className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm shadow-slate-900/5 dark:border-white/10 dark:bg-white/[0.04] sm:p-6">
-          <h2 className="mb-4 text-lg font-semibold tracking-tight text-slate-950 dark:text-white">
+        <section className="border-t-2 border-slate-950 bg-white p-5 sm:p-6">
+          <h2 className="mb-4 text-xl font-bold tracking-tight text-slate-950">
             Add to your watchlist
           </h2>
           <StockSearch onSelect={addStock} />
         </section>
 
-        <section className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm shadow-slate-900/5 dark:border-white/10 dark:bg-white/[0.04] sm:p-6">
+        <section className="border-t-2 border-slate-950 bg-white p-5 sm:p-6">
           <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-lg font-semibold tracking-tight text-slate-950 dark:text-white">
+            <h2 className="text-xl font-bold tracking-tight text-slate-950">
               Your watchlist
             </h2>
             <span className="text-xs text-slate-500 dark:text-slate-400">
@@ -117,7 +117,7 @@ export function MarketsDashboard() {
 
       {selectedStock && (
         <div
-          className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-950/50 p-0 backdrop-blur-sm sm:items-center sm:p-4"
+          className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               setSelectedStock(null);
@@ -133,7 +133,7 @@ export function MarketsDashboard() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="stock-detail-title"
-            className="w-full max-w-lg rounded-t-3xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-slate-900 sm:rounded-3xl sm:p-7"
+            className="w-full max-w-lg border-t-4 border-amber-300 bg-white p-6 sm:p-7"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -142,7 +142,7 @@ export function MarketsDashboard() {
                 </p>
                 <h2
                   id="stock-detail-title"
-                  className="mt-2 text-xl font-semibold tracking-tight text-slate-950 dark:text-white"
+                  className="mt-2 text-2xl font-bold tracking-tight text-slate-950"
                 >
                   {selectedStock.name}
                 </h2>

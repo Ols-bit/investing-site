@@ -116,7 +116,7 @@ export function Watchlist({ stocks, onRemove, onSelect }: WatchlistProps) {
 
   if (stocks.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-slate-300 px-5 py-10 text-center dark:border-white/15">
+      <div className="border border-dashed border-slate-300 px-5 py-10 text-center">
         <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
           Your watchlist is empty.
         </p>
@@ -149,7 +149,7 @@ export function Watchlist({ stocks, onRemove, onSelect }: WatchlistProps) {
           return (
             <li
               key={stock.symbol}
-              className="rounded-2xl border border-slate-200/80 bg-white/90 p-4 shadow-sm shadow-slate-900/5 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/10 sm:p-5"
+              className="border-t border-slate-300 bg-white p-4 sm:p-5"
             >
               {quote ? (
                 <div className="flex items-start justify-between gap-3">
@@ -170,8 +170,8 @@ export function Watchlist({ stocks, onRemove, onSelect }: WatchlistProps) {
                     <span
                       className={`mt-1 inline-flex items-center gap-1 text-sm font-semibold ${
                         isUp
-                          ? "text-emerald-700 dark:text-emerald-300"
-                          : "text-rose-700 dark:text-rose-300"
+                          ? "text-teal-800"
+                          : "text-rose-700"
                       }`}
                     >
                       <span aria-hidden="true">{isUp ? "↑" : "↓"}</span>

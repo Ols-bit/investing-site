@@ -128,13 +128,13 @@ export function CompoundInterestCalculator() {
   return (
     <section
       aria-labelledby="compound-calculator-title"
-      className="my-8 rounded-3xl border border-teal-200 bg-teal-50/70 p-5 text-slate-800 shadow-sm dark:border-teal-300/20 dark:bg-teal-300/[0.06] dark:text-slate-100 sm:p-7"
+      className="my-8 border-l-4 border-amber-300 bg-teal-50 p-5 text-slate-800 sm:p-7"
     >
       <div className="mb-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-800 dark:text-teal-200">
-          Interactive example
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-800">
+          Calculator
         </p>
-        <h2 id="compound-calculator-title" className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
+        <h2 id="compound-calculator-title" className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
           Compound interest calculator
         </h2>
       </div>
@@ -150,7 +150,7 @@ export function CompoundInterestCalculator() {
                 <input
                   id={`${key}-number`}
                   aria-label={`${label} value`}
-                  className="w-28 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-right text-sm text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:border-white/15 dark:bg-slate-900 dark:text-white dark:focus-visible:outline-teal-300"
+                  className="w-28 border border-slate-300 bg-white px-2 py-1.5 text-right text-sm text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700"
                   type="number"
                   min={min}
                   max={max}
@@ -168,7 +168,7 @@ export function CompoundInterestCalculator() {
             </div>
             <input
               aria-label={`${label} slider`}
-              className="h-2 w-full cursor-pointer accent-teal-600"
+              className="h-2 w-full cursor-pointer accent-teal-700"
               type="range"
               min={min}
               max={max}
@@ -188,7 +188,7 @@ export function CompoundInterestCalculator() {
         ].map(({ label, value, emphasis }) => (
           <div
             key={label}
-            className={`rounded-2xl border p-4 ${emphasis ? "border-teal-300 bg-white dark:border-teal-300/30 dark:bg-slate-900/80" : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-slate-900/50"}`}
+            className={`border-t-2 p-4 ${emphasis ? "border-teal-700 bg-white" : "border-slate-300 bg-white/70"}`}
           >
             <p className="text-xs font-medium leading-5 text-slate-600 dark:text-slate-300">{label}</p>
             <p className="mt-1 text-xl font-semibold tracking-tight text-slate-950 dark:text-white">
@@ -198,8 +198,8 @@ export function CompoundInterestCalculator() {
         ))}
       </div>
 
-      <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/50 sm:p-5">
-        <p className="mb-3 text-sm font-semibold text-slate-800 dark:text-slate-100">Illustrated balance over time</p>
+      <div className="mt-6 border-t-2 border-slate-950 bg-white p-3 sm:p-5">
+        <p className="mb-3 text-sm font-bold text-slate-800">Illustrated balance over time</p>
         <div className="w-full overflow-x-auto">
           <svg
             aria-label={`Estimated balance grows from ${currencyFormatter.format(values.startingAmount)} to ${currencyFormatter.format(calculation.balance)} over ${values.years} years. The chart separates contributions from growth.`}
@@ -217,7 +217,7 @@ export function CompoundInterestCalculator() {
                     x2={chart.width - chart.padding.right}
                     y1={lineY}
                     y2={lineY}
-                    className="stroke-slate-200 dark:stroke-white/10"
+                    className="stroke-slate-200"
                     strokeDasharray={fraction === 0 ? undefined : "4 5"}
                   />
                   <text x={chart.padding.left - 8} y={lineY + 4} textAnchor="end" className="fill-slate-500 text-[11px]">
@@ -226,10 +226,10 @@ export function CompoundInterestCalculator() {
                 </g>
               );
             })}
-            <path d={chart.contributedAreaPath} className="fill-teal-200/80 dark:fill-teal-300/20" />
-            <path d={chart.growthAreaPath} className="fill-amber-300/70 dark:fill-amber-300/25" />
-            <path d={chart.contributedPath} fill="none" className="stroke-teal-700 dark:stroke-teal-300" strokeWidth="2" />
-            <path d={chart.balancePath} fill="none" className="stroke-amber-700 dark:stroke-amber-300" strokeWidth="2.5" />
+            <path d={chart.contributedAreaPath} className="fill-teal-200/80" />
+            <path d={chart.growthAreaPath} className="fill-amber-300/70" />
+            <path d={chart.contributedPath} fill="none" className="stroke-teal-700" strokeWidth="2" />
+            <path d={chart.balancePath} fill="none" className="stroke-amber-700" strokeWidth="2.5" />
             <text x={chart.padding.left} y={chart.height - 8} className="fill-slate-500 text-[11px]">Year 0</text>
             <text x={chart.width - chart.padding.right} y={chart.height - 8} textAnchor="end" className="fill-slate-500 text-[11px]">
               Year {values.years}
