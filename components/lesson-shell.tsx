@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { FadeInSection } from "@/components/fade-in-section";
+import { LessonCompletionButton } from "@/components/lesson-progress";
 import type { Lesson } from "@/lib/lessons";
 
 type LessonShellProps = {
@@ -20,7 +21,7 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
         <div className="rounded-2xl border border-teal-200 bg-teal-50/80 p-4 shadow-sm shadow-teal-950/5 dark:border-teal-300/15 dark:bg-teal-300/[0.06] dark:shadow-black/10">
           <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.18em] text-teal-950 dark:text-teal-100">
           <span>Module {current} of {total}</span>
-          <span>{percent}% complete</span>
+          <span>{percent}% through learning path</span>
           </div>
 
           <div className="h-2 w-full overflow-hidden rounded-full bg-teal-950/10 dark:bg-white/10">
@@ -72,6 +73,7 @@ export function LessonShell({ lesson, current, total, children }: LessonShellPro
               </li>
             ))}
           </ul>
+          <LessonCompletionButton lessonId={lesson.slug} />
         </footer>
       </article>
       </FadeInSection>

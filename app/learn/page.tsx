@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { FadeInSection } from "@/components/fade-in-section";
+import { LearningProgressSummary, LessonCompletionBadge } from "@/components/lesson-progress";
 import { lessons } from "@/lib/lessons";
 
 export const metadata: Metadata = {
@@ -83,6 +84,8 @@ export default function LearnPage() {
         </p>
       </FadeInSection>
 
+      <LearningProgressSummary lessonIds={lessons.map((lesson) => lesson.slug)} />
+
       <section aria-label="Learning modules" className="grid gap-5 md:grid-cols-2">
         {lessons.map((lesson, index) => {
           const style = moduleStyles[index % moduleStyles.length];
@@ -98,9 +101,12 @@ export default function LearnPage() {
                   <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-300">
                     Module {index + 1}
                   </span>
-                  <span className={`rounded-full px-3 py-1.5 text-xs font-semibold ${style.badge}`}>
-                    {lesson.estimatedMinutes} min
-                  </span>
+                  <div className="flex flex-wrap items-center justify-end gap-2">
+                    <LessonCompletionBadge lessonId={lesson.slug} />
+                    <span className={`rounded-full px-3 py-1.5 text-xs font-semibold ${style.badge}`}>
+                      {lesson.estimatedMinutes} min
+                    </span>
+                  </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span aria-hidden="true" className={`inline-flex size-12 shrink-0 items-center justify-center rounded-2xl text-2xl shadow-sm ${style.iconSurface}`}>

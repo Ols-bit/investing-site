@@ -4,3 +4,43 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+@keyframes answer-correct {
+  0% {
+    transform: scale(0.98);
+  }
+  60% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes answer-incorrect {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-answer-correct {
+  animation: answer-correct 280ms ease-out;
+}
+
+.animate-answer-incorrect {
+  animation: answer-incorrect 280ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-answer-correct,
+  .animate-answer-incorrect {
+    animation: none;
+  }
+}

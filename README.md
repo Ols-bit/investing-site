@@ -20,6 +20,10 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Market data
+
+The Markets page uses Finnhub for stock searches and quotes. Set `FINNHUB_API_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration for deployment. Keep this variable private; do not rename it with a `NEXT_PUBLIC_` prefix.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
