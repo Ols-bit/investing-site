@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { SITE_NAME } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `Privacy | ${SITE_NAME}`,
-  description: "A template explaining how this educational site handles personal data.",
-};
+export const metadata = createPageMetadata(
+  "Privacy",
+  "A template explaining how this educational site handles personal data.",
+  "/privacy",
+);
 
 export default function PrivacyPage() {
   return (

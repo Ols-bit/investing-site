@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { FadeInSection } from "@/components/fade-in-section";
 import { LearningProgressSummary, LessonCompletionBadge } from "@/components/lesson-progress";
 import { lessons } from "@/lib/lessons";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Learn | Investing Basics",
-  description: "Explore beginner-friendly investing lessons.",
-};
+export const metadata = createPageMetadata(
+  "Learn",
+  "Explore beginner-friendly investing lessons.",
+  "/learn",
+);
 
 export default function LearnPage() {
   return (

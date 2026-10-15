@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { SITE_NAME } from "@/lib/site";
+import { createPageMetadata, SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `Terms of use | ${SITE_NAME}`,
-  description: "Template terms for using this educational investing site.",
-};
+export const metadata = createPageMetadata(
+  "Terms of use",
+  "Template terms for using this educational investing site.",
+  "/terms",
+);
 
 export default function TermsPage() {
   return (

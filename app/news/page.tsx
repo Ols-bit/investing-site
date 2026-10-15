@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-
 import { FadeInSection } from "@/components/fade-in-section";
 import { NewsFeed } from "@/components/news-feed";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "News | Investing Basics",
-};
+export const metadata = createPageMetadata(
+  "News",
+  "Headlines and briefings from across the markets. Read the original reporting from its source.",
+  "/news",
+);
 
 export default function NewsPage() {
   return (

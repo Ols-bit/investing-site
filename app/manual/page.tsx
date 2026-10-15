@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { FadeInSection } from "@/components/fade-in-section";
 import { ManualStages } from "@/components/manual-stages";
 import { manualStages } from "@/lib/lessons";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Trading Manual | Investing Basics",
-  description: "A practical guide to stocks, orders, market data, risk and common investing mistakes.",
-};
+export const metadata = createPageMetadata(
+  "Trading Manual",
+  "A practical guide to stocks, orders, market data, risk and common investing mistakes.",
+  "/manual",
+);
 
 export default function ManualPage() {
   return (

@@ -1,0 +1,333 @@
+[
+  {
+    "term": "Ask price",
+    "definition": "The lowest price a seller is currently willing to accept for an asset.",
+    "explanation": "The ask can differ from the last traded price. A buyer's order may not be filled at the displayed ask if the price changes before the order reaches the market."
+  },
+  {
+    "term": "Asset allocation",
+    "definition": "How an investment portfolio is divided among broad asset types such as shares, bonds and cash.",
+    "explanation": "The mix can affect how a portfolio behaves, but no allocation removes the possibility of loss."
+  },
+  {
+    "term": "Asset class",
+    "definition": "A broad group of investments with similar characteristics, such as shares, bonds or cash.",
+    "explanation": "Different asset classes can respond differently to economic events, though investments within one class can still behave very differently."
+  },
+  {
+    "term": "Bear market",
+    "definition": "A prolonged period when prices across a market or asset group are falling.",
+    "explanation": "There is no single definition used in every context. A common convention describes a fall of 20% or more from a recent peak, but the label does not predict what happens next."
+  },
+  {
+    "term": "Bid price",
+    "definition": "The highest price a buyer is currently willing to pay for an asset.",
+    "explanation": "The bid may change quickly and may not be the price at which a new order is filled."
+  },
+  {
+    "term": "Bond",
+    "definition": "A loan made by an investor to a government, company or other borrower.",
+    "explanation": "The borrower usually promises interest and repayment under stated terms, but a bond can fall in value and the borrower may fail to pay."
+  },
+  {
+    "term": "Broker",
+    "definition": "A firm or service that arranges investment trades for its customers.",
+    "explanation": "Brokers can differ in fees, available investments, account protections and order-handling features."
+  },
+  {
+    "term": "Bull market",
+    "definition": "A period when prices across a market or asset group are rising.",
+    "explanation": "The phrase describes a broad market trend, not a guarantee that prices will continue rising."
+  },
+  {
+    "term": "Capital",
+    "definition": "Money or other resources available to invest or use in a business.",
+    "explanation": "In investing, capital can be exposed to loss; it is not automatically protected just because it has been invested."
+  },
+  {
+    "term": "Capital gain",
+    "definition": "A profit made when an asset is sold for more than its purchase cost.",
+    "explanation": "Tax treatment depends on the country, account, asset and personal circumstances. A gain can also be reduced by fees and taxes."
+  },
+  {
+    "term": "Capital gains tax",
+    "definition": "A tax that may apply to profit from selling certain assets.",
+    "explanation": "Rules, allowances and rates vary by location and can change. This definition is general information, not tax advice."
+  },
+  {
+    "term": "Capital loss",
+    "definition": "A loss made when an asset is sold for less than its purchase cost.",
+    "explanation": "A loss may be realised by selling or remain unrealised while the asset is still held. Tax rules for losses differ by jurisdiction."
+  },
+  {
+    "term": "Cash ISA",
+    "definition": "A UK savings account where eligible interest is tax-free under ISA rules.",
+    "explanation": "A Cash ISA is a savings product, not an investment in shares. Eligibility and annual allowances are set by UK rules."
+  },
+  {
+    "term": "Compound interest",
+    "definition": "Interest calculated on both the original amount and previously added interest.",
+    "explanation": "The same compounding idea can describe investment growth being reinvested, but investment returns vary and are not guaranteed."
+  },
+  {
+    "term": "Concentration risk",
+    "definition": "The risk that too much of a portfolio depends on one investment, company, sector or type of asset.",
+    "explanation": "A concentrated portfolio can be affected more heavily by a problem in the area it relies on."
+  },
+  {
+    "term": "Diversification",
+    "definition": "Spreading investments across different holdings so the portfolio depends less on any one of them.",
+    "explanation": "Diversification can reduce some company-specific risk, but it cannot prevent losses or remove broad market risk."
+  },
+  {
+    "term": "Dividend",
+    "definition": "A payment a company may choose to distribute to shareholders.",
+    "explanation": "A company can change or stop its dividend. A dividend is not guaranteed income and does not prevent the share price from falling."
+  },
+  {
+    "term": "Dividend reinvestment",
+    "definition": "Using a dividend payment to buy more shares or fund units instead of taking it as cash.",
+    "explanation": "Reinvestment may increase the number of units held, but it does not guarantee growth and may have tax or fee consequences."
+  },
+  {
+    "term": "Dividend yield",
+    "definition": "A measure comparing a share's annual dividend with its current share price.",
+    "explanation": "Yield can rise when a share price falls, even if the dividend has not increased. It is based on past or expected payments, which can change."
+  },
+  {
+    "term": "Dollar-cost averaging",
+    "definition": "Investing a set amount at regular intervals, regardless of the asset's current price.",
+    "aliases": ["Pound-cost averaging"],
+    "explanation": "Regular investing changes the prices at which purchases are made, but it cannot guarantee a profit or protect against loss."
+  },
+  {
+    "term": "Earnings per share",
+    "definition": "A company's reported profit divided by the number of its shares, using a stated accounting method.",
+    "aliases": ["EPS"],
+    "explanation": "Companies may report different versions of earnings per share. It is one measure and does not by itself show whether a share is good value."
+  },
+  {
+    "term": "Exchange",
+    "definition": "A marketplace that brings together buyers and sellers of listed investments.",
+    "explanation": "Exchanges set rules for listing and trading. Many trades can also take place through other trading venues."
+  },
+  {
+    "term": "ETF",
+    "definition": "An exchange-traded fund is a pooled investment fund whose units trade on an exchange.",
+    "aliases": ["Exchange-traded fund"],
+    "explanation": "An ETF may hold shares, bonds or other assets and can track an index or follow another strategy. Its value can fall, and fees and risks vary."
+  },
+  {
+    "term": "Expense ratio",
+    "definition": "A measure of a fund's annual operating expenses as a proportion of its assets.",
+    "aliases": ["Ongoing charges figure", "OCF"],
+    "explanation": "It does not necessarily include every cost an investor may pay, such as platform or trading charges."
+  },
+  {
+    "term": "Financial adviser",
+    "definition": "A professional who provides financial guidance, subject to the rules of their jurisdiction.",
+    "explanation": "Qualifications, services and regulatory protections differ by country. Check local registers and the scope of any advice offered."
+  },
+  {
+    "term": "Fractional share",
+    "definition": "A portion of a share that is smaller than one whole share.",
+    "explanation": "A broker may offer fractional trading under its own terms. The investor may not receive all the same rights as a holder of a whole share."
+  },
+  {
+    "term": "Fund",
+    "definition": "A pool of money collected from investors and invested according to stated rules.",
+    "explanation": "Funds differ in what they hold, how they are managed, their costs and the risks investors take."
+  },
+  {
+    "term": "Gearing",
+    "definition": "Using borrowing or other financial leverage to increase exposure to an investment.",
+    "explanation": "Gearing can magnify both gains and losses. Some geared products can lose value rapidly and may not be suitable for inexperienced investors."
+  },
+  {
+    "term": "Growth",
+    "definition": "An increase in the value of an investment or in a company's business over time.",
+    "explanation": "Past growth does not ensure future growth, and a company's business can improve while its share price falls."
+  },
+  {
+    "term": "Index",
+    "definition": "A measurement that tracks the performance of a selected group of investments using stated rules.",
+    "explanation": "An index is a calculation, not usually something an investor can buy directly. A fund may aim to follow its performance."
+  },
+  {
+    "term": "Index fund",
+    "definition": "A fund that aims to follow the performance of a particular market index.",
+    "explanation": "It may hold all or a sample of the index's investments. Tracking differences, costs and market risk still apply."
+  },
+  {
+    "term": "Inflation",
+    "definition": "A general rise in prices that reduces how much money can buy.",
+    "explanation": "If prices rise faster than money grows, its purchasing power falls. Inflation measures and personal costs can differ."
+  },
+  {
+    "term": "Interest",
+    "definition": "Money paid for borrowing or earned for lending or depositing money.",
+    "explanation": "Rates and payment terms depend on the product and can be fixed or variable. Investment products may not provide guaranteed interest."
+  },
+  {
+    "term": "Investment horizon",
+    "definition": "The length of time someone expects to keep money invested before needing it.",
+    "aliases": ["Time horizon"],
+    "explanation": "A time horizon can affect how much short-term price movement matters, but it does not remove the risk of loss."
+  },
+  {
+    "term": "ISA",
+    "definition": "A UK Individual Savings Account that can provide tax advantages under current ISA rules.",
+    "explanation": "Cash, stocks and shares, innovative finance and other ISA types have different features. Eligibility and annual allowances are set by UK rules."
+  },
+  {
+    "term": "Limit order",
+    "definition": "An instruction to buy or sell only at a specified price or better.",
+    "explanation": "A limit order controls the price boundary but may never be executed if the market does not reach it."
+  },
+  {
+    "term": "Liquidity",
+    "definition": "How easily an asset can be bought or sold without greatly affecting its price.",
+    "explanation": "An asset with low liquidity may have fewer buyers and sellers, wider bid-ask spreads or delays when trading."
+  },
+  {
+    "term": "Market capitalisation",
+    "definition": "A company's share price multiplied by the number of its issued shares.",
+    "aliases": ["Market cap", "Market capitalization"],
+    "explanation": "Market capitalisation is an estimate of the market value of a company's equity, not the total value of the business or its assets."
+  },
+  {
+    "term": "Market order",
+    "definition": "An instruction to buy or sell as soon as possible at the best available prices.",
+    "explanation": "A market order prioritises execution, not a specific price. In a fast-moving or thin market, the final price can differ from the last quote."
+  },
+  {
+    "term": "Market risk",
+    "definition": "The possibility that broad market movements will reduce the value of investments.",
+    "explanation": "Diversification can reduce some risks tied to individual holdings, but it cannot remove the risk that an entire market falls."
+  },
+  {
+    "term": "Mutual fund",
+    "definition": "A pooled investment fund that issues units to investors and is priced under its governing rules.",
+    "explanation": "The term is commonly used in the United States. Other countries may use different fund structures and names."
+  },
+  {
+    "term": "Net asset value",
+    "definition": "A fund's assets minus its liabilities, usually expressed per unit or share.",
+    "aliases": ["NAV"],
+    "explanation": "The way and time NAV is calculated depend on the fund. Exchange-traded funds can trade at prices above or below their NAV."
+  },
+  {
+    "term": "Order",
+    "definition": "An instruction sent to a broker to buy or sell an investment under specified conditions.",
+    "explanation": "Orders can have different price, quantity and timing instructions. Availability and names vary between brokers."
+  },
+  {
+    "term": "P/E ratio",
+    "definition": "A share price divided by the company's earnings per share for a stated period.",
+    "aliases": ["Price-to-earnings ratio"],
+    "explanation": "The ratio depends on how earnings are measured and can be unhelpful when earnings are negative or unusually high or low. It does not predict returns."
+  },
+  {
+    "term": "Portfolio",
+    "definition": "The collection of investments held by a person or organisation.",
+    "explanation": "A portfolio can include different types of assets, accounts and cash. Its overall risk depends on the holdings and how they relate to one another."
+  },
+  {
+    "term": "Price",
+    "definition": "The amount at which an asset is quoted or traded at a particular time.",
+    "explanation": "A displayed price may be delayed or may not be the price available when an order is placed."
+  },
+  {
+    "term": "Pound-cost averaging",
+    "definition": "Investing a set amount in pounds at regular intervals, regardless of the current price.",
+    "aliases": ["Dollar-cost averaging"],
+    "explanation": "This approach spreads purchases across different prices but does not guarantee a profit or prevent losses."
+  },
+  {
+    "term": "Previous close",
+    "definition": "The closing price recorded for the previous trading session.",
+    "explanation": "The previous close is often used to calculate a displayed daily change. It may differ from the price available in the next session."
+  },
+  {
+    "term": "Return",
+    "definition": "The gain or loss on an investment over a stated period, often shown as a percentage.",
+    "explanation": "Return can include price changes and income such as dividends. Fees, taxes and inflation can affect what an investor keeps."
+  },
+  {
+    "term": "Risk",
+    "definition": "The possibility that an investment's outcome differs from what was expected, including losing money.",
+    "explanation": "Risk has several forms, including market, company, inflation, liquidity and currency risk."
+  },
+  {
+    "term": "Risk tolerance",
+    "definition": "How much uncertainty and potential loss someone is willing and able to accept.",
+    "explanation": "Personal comfort is only one part of risk tolerance; financial capacity, goals and timeframes also matter."
+  },
+  {
+    "term": "Share",
+    "definition": "A unit of ownership in a company.",
+    "explanation": "Shareholders may benefit if the value rises or the company pays dividends, but neither outcome is guaranteed and the share price can fall."
+  },
+  {
+    "term": "Short selling",
+    "definition": "Selling borrowed shares in the hope of buying them back later at a lower price.",
+    "explanation": "If the price rises instead, losses can be substantial. Short selling involves borrowing costs and additional risks."
+  },
+  {
+    "term": "SIPP",
+    "definition": "A UK Self-Invested Personal Pension that lets an individual choose investments within a pension wrapper.",
+    "explanation": "Pensions have tax rules, contribution limits and access restrictions. Rules depend on individual circumstances and can change."
+  },
+  {
+    "term": "Spread",
+    "definition": "The difference between the bid price and the ask price.",
+    "explanation": "The bid-ask spread is one cost of trading and can widen when an asset is less liquid or markets are unsettled."
+  },
+  {
+    "term": "Stock",
+    "definition": "An ownership interest in a company, usually represented by shares.",
+    "explanation": "Stock value can rise or fall. A company may pay dividends, but it is not required to do so."
+  },
+  {
+    "term": "Stock exchange",
+    "definition": "A regulated marketplace where eligible securities can be listed and traded under set rules.",
+    "explanation": "A listing on an exchange does not guarantee that a company will succeed or that its shares will keep their value."
+  },
+  {
+    "term": "Stock market",
+    "definition": "The wider system where shares are issued, bought and sold.",
+    "explanation": "It includes exchanges, other trading venues, brokers, investors and the rules that govern trading."
+  },
+  {
+    "term": "Tax wrapper",
+    "definition": "An account or legal structure that changes how investment income or gains are taxed.",
+    "explanation": "Rules vary by country and wrapper type. A tax advantage does not remove investment risk or make an investment suitable."
+  },
+  {
+    "term": "Total return",
+    "definition": "An investment's price change plus income received over a stated period.",
+    "explanation": "Total return may assume income is reinvested, so check the calculation method before comparing figures."
+  },
+  {
+    "term": "Transaction cost",
+    "definition": "A cost charged or incurred when buying or selling an investment.",
+    "aliases": ["Trading cost"],
+    "explanation": "Costs can include broker commissions, exchange charges, taxes and the bid-ask spread."
+  },
+  {
+    "term": "Trading volume",
+    "definition": "The number of shares or other units traded during a stated period.",
+    "aliases": ["Volume"],
+    "explanation": "Volume is not the same as a company's total number of issued shares. It can help describe trading activity but does not predict price direction."
+  },
+  {
+    "term": "Volatility",
+    "definition": "How much and how quickly an investment's price moves over time.",
+    "explanation": "High volatility means prices have moved more sharply, but it does not show which direction prices will move next."
+  },
+  {
+    "term": "Yield",
+    "definition": "Income from an investment expressed relative to its price or value.",
+    "explanation": "Different products calculate yield in different ways. A quoted yield may change and should not be treated as guaranteed future income."
+  }
+]

@@ -5,7 +5,7 @@ import { AgeGroupProvider, ChangeAgeGroupButton } from "@/components/age-group-p
 import { LessonProgressProvider } from "@/components/lesson-progress";
 import { LenisProvider } from "@/components/lenis-provider";
 import { SiteNavigation } from "@/components/site-navigation";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,8 +19,27 @@ const display = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: SITE_NAME,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
   description: "Plain-English lessons on investing, risk, markets, and long-term thinking.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: SITE_NAME,
+    description: "Plain-English lessons on investing, risk, markets, and long-term thinking.",
+    url: "/",
+    siteName: SITE_NAME,
+    type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE_NAME }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: "Plain-English lessons on investing, risk, markets, and long-term thinking.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -54,6 +73,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                         ["/manual", "Manual"],
                         ["/markets", "Markets"],
                         ["/news", "News"],
+                        ["/glossary", "Glossary"],
+                        ["/tools", "Tools"],
                         ["/about", "About"],
                         ["/disclaimer", "Disclaimer"],
                         ["/privacy", "Privacy"],

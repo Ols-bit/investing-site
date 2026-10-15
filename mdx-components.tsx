@@ -3,6 +3,7 @@ import type { MDXComponents } from "mdx/types";
 import { CompoundInterestCalculator } from "@/components/compound-interest-calculator";
 import { ForAge } from "@/components/for-age";
 import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
 
 const components: MDXComponents = {
   h1: ({ children, ...props }) => (
@@ -38,6 +39,7 @@ const components: MDXComponents = {
   ForAge,
   CompoundInterestCalculator,
   Quiz,
+  Term,
 };
 
 export function useMDXComponents(): MDXComponents {

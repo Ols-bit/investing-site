@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { SITE_NAME } from "@/lib/site";
+import { createPageMetadata, SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `Disclaimer | ${SITE_NAME}`,
-  description: "Important information about education, investment risk and market data.",
-};
+export const metadata = createPageMetadata(
+  "Disclaimer",
+  "Important information about education, investment risk and market data.",
+  "/disclaimer",
+);
 
 export default function DisclaimerPage() {
   return (

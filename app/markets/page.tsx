@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
 import { FadeInSection } from "@/components/fade-in-section";
 import { MarketsDashboard } from "@/components/markets-dashboard";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Markets | Investing Basics",
-  description: "Follow stock prices and explore market data in a beginner-friendly watchlist.",
-};
+export const metadata = createPageMetadata(
+  "Markets",
+  "Follow stock prices and explore market data in a beginner-friendly watchlist.",
+  "/markets",
+);
 
 async function DashboardForSelectedSymbol({
   searchParams,

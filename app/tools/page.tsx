@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-
 import { FadeInSection } from "@/components/fade-in-section";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Tools | Investing Basics",
-};
+export const metadata = createPageMetadata(
+  "Tools",
+  "Use simple calculators to explore investment costs, growth and goals.",
+  "/tools",
+);
 
 export default function ToolsPage() {
   return (

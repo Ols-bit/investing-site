@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_NAME } from "@/lib/site";
+import { createPageMetadata, SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `About | ${SITE_NAME}`,
-  description: "Why this investing education site exists and who it is for.",
-};
+export const metadata = createPageMetadata(
+  "About",
+  "Why this investing education site exists and who it is for.",
+  "/about",
+);
 
 export default function AboutPage() {
   return (

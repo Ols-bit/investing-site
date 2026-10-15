@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 import { LessonShell } from "@/components/lesson-shell";
 import { getLessonBySlug, getLessonProgress, lessons, manualLessons } from "@/lib/lessons";
+import { getLessonFrontmatter } from "@/lib/lesson-frontmatter";
+import { createPageMetadata, SITE_NAME } from "@/lib/site";
 
 import WhyInvestLesson from "@/content/lessons/01-why-invest.mdx";
 import AssetClassesLesson from "@/content/lessons/asset-classes.mdx";
@@ -45,6 +48,41 @@ export async function generateStaticParams() {
   return [...lessons, ...manualLessons].map((lesson) => ({ slug: lesson.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const lesson = await getLessonFrontmatter(slug);
+  if (!lesson) {
+    notFound();
+  }
+
+  return {
+    ...createPageMetadata(lesson.title, lesson.description, `/lessons/${slug}`),
+    openGraph: {
+      title: lesson.title,
+      description: lesson.description,
+      url: `/lessons/${slug}`,
+      siteName: SITE_NAME,
+      type: "article",
+      images: [{
+        url: `/lessons/${slug}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: lesson.title,
+      }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: lesson.title,
+      description: lesson.description,
+      images: [`/lessons/${slug}/opengraph-image`],
+    },
+  };
+}
+
 export default async function LessonPage({
   params,
 }: {
@@ -64,10 +102,30 @@ export default async function LessonPage({
   }
 
   const { current, total } = getLessonProgress(slug);
+  const frontmatter = await getLessonFrontmatter(slug);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: frontmatter?.title ?? lesson.title,
+    description: frontmatter?.description ?? lesson.summary,
+    mainEntityOfPage: new URL(`/lessons/${slug}`, process.env.NEXT_PUBLIC_SITE_URL || "https://fieldnotes.example").toString(),
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+    },
+  };
 
   return (
-    <LessonShell lesson={lesson} current={current} total={total}>
-      <LessonContent />
-    </LessonShell>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <LessonShell lesson={lesson} current={current} total={total}>
+        <LessonContent />
+      </LessonShell>
+    </>
   );
 }

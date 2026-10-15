@@ -1,5 +1,6 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
+import remarkFrontmatter from "remark-frontmatter";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.1.112"],
@@ -21,6 +22,9 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkFrontmatter],
+  },
 });
 
 export default withMDX(nextConfig);

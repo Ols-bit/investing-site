@@ -10,6 +10,8 @@ const navigationLinks = [
   { href: "/manual", label: "Manual" },
   { href: "/markets", label: "Markets" },
   { href: "/news", label: "News" },
+  { href: "/glossary", label: "Glossary" },
+  { href: "/tools", label: "Tools" },
 ];
 
 function isCurrentPage(pathname: string, href: string) {
