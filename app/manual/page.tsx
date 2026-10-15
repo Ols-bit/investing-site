@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { FadeInSection } from "@/components/fade-in-section";
 import { ManualStages } from "@/components/manual-stages";
@@ -26,7 +27,10 @@ export default function ManualPage() {
             Start with what a share is. Work through orders, market data and risk. Learn the mechanics without being told what to buy.
           </p>
           <p className="mt-4 border-l-4 border-amber-300 pl-3 text-sm font-semibold text-slate-700">
-            Educational only. Not financial advice.
+            Educational only. Not financial advice.{" "}
+            <Link href="/disclaimer" className="underline underline-offset-4 hover:text-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              Read the full disclaimer
+            </Link>
           </p>
         </div>
       </FadeInSection>

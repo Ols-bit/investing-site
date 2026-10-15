@@ -13,6 +13,7 @@ import { CompanyNews } from "@/components/company-news";
 import { StockHistoryChart } from "@/components/stock-history-chart";
 import { StockSearch } from "@/components/stock-search";
 import { Watchlist } from "@/components/watchlist";
+import { US_TICKERS } from "@/lib/tickers";
 
 function formatPrice(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -21,13 +22,16 @@ function formatPrice(value: number) {
   }).format(value);
 }
 
-export function MarketsDashboard() {
+export function MarketsDashboard({ initialSymbol }: { initialSymbol?: string }) {
   const watchlist = useSyncExternalStore(
     subscribeToWatchlist,
     getWatchlistSnapshot,
     getServerWatchlistSnapshot,
   );
-  const [selectedStock, setSelectedStock] = useState<StockSearchResult | null>(null);
+  const [selectedStock, setSelectedStock] = useState<StockSearchResult | null>(() => {
+    const ticker = US_TICKERS.find((item) => item.symbol === initialSymbol?.toUpperCase());
+    return ticker ? { symbol: ticker.symbol, name: ticker.name } : null;
+  });
   const [selectedQuote, setSelectedQuote] = useState<StockQuote | null>(null);
   const [selectedQuoteError, setSelectedQuoteError] = useState<string | null>(null);
 

@@ -137,10 +137,10 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
     if (!bounds || points.length < 2) return;
     const svgX = ((clientX - bounds.left) / bounds.width) * WIDTH;
     const clampedX = Math.min(
-      WIDTH - PADDING.right,
-      Math.max(PADDING.left, svgX),
+      plot.plotWidth,
+      Math.max(0, svgX - PADDING.left),
     );
-    const fraction = (clampedX - PADDING.left) / plot.plotWidth;
+    const fraction = clampedX / plot.plotWidth;
     setActiveIndex(Math.round(fraction * (points.length - 1)));
   }
 
@@ -282,10 +282,14 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
             className="pointer-events-none absolute top-0 z-10 -translate-x-1/2 border border-slate-950 bg-white px-3 py-2 text-xs text-slate-950"
             style={{
               left: `${Math.max(
-                16,
+                (PADDING.left / WIDTH) * 100,
                 Math.min(
-                  84,
-                  (activeIndex! / Math.max(points.length - 1, 1)) * 100,
+                  ((WIDTH - PADDING.right) / WIDTH) * 100,
+                  ((PADDING.left +
+                    (activeIndex! / Math.max(points.length - 1, 1)) *
+                      plot.plotWidth) /
+                    WIDTH) *
+                    100,
                 ),
               )}%`,
             }}

@@ -18,7 +18,7 @@ type HistoryRequest = {
 
 const rangeRequests: Record<HistoryRange, HistoryRequest> = {
   "1D": { interval: "5min", outputsize: 100, revalidate: 60 },
-  "1W": { interval: "1h", outputsize: 50, revalidate: 300 },
+  "1W": { interval: "1h", outputsize: 50, revalidate: 3600 },
   "1M": { interval: "1day", outputsize: 32, revalidate: 3600 },
   "3M": { interval: "1day", outputsize: 70, revalidate: 3600 },
   "6M": { interval: "1day", outputsize: 140, revalidate: 3600 },
@@ -28,7 +28,7 @@ const rangeRequests: Record<HistoryRange, HistoryRequest> = {
   ALL: { interval: "1month", outputsize: MAX_OUTPUT_SIZE, revalidate: 86400 },
 };
 
-type TwelveDataErrorKind = "missing-key" | "rate-limit" | "unavailable" | "no-data";
+type TwelveDataErrorKind = "missing-key" | "rate-limit" | "unavailable";
 
 export class HistoryDataError extends Error {
   constructor(readonly kind: TwelveDataErrorKind) {
@@ -99,10 +99,6 @@ function errorResponse(error: unknown): Response {
         status: 502,
         message: "Chart data is temporarily unavailable. Please try again.",
       },
-      "no-data": {
-        status: 404,
-        message: "No historical prices are available for this range.",
-      },
     };
     const { status, message } = responses[error.kind];
     return Response.json({ error: message }, { status });
@@ -158,7 +154,7 @@ export async function getStockHistory(
     throw new HistoryDataError("unavailable");
   }
   if (!Array.isArray(payload.values)) {
-    throw new HistoryDataError("no-data");
+    return { symbol, range, points: [] };
   }
 
   let points = payload.values
@@ -170,10 +166,6 @@ export async function getStockHistory(
     const latestTradingDate = points.at(-1)?.time.slice(0, 10);
     points = points.filter((point) => point.time.slice(0, 10) === latestTradingDate);
   }
-  if (points.length === 0) {
-    throw new HistoryDataError("no-data");
-  }
-
   return { symbol, range, points };
 }
 
