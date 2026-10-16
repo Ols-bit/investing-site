@@ -40,6 +40,11 @@
     "explanation": "The phrase describes a broad market trend, not a guarantee that prices will continue rising."
   },
   {
+    "term": "Candlestick chart",
+    "definition": "A chart that shows an asset's open, high, low and close prices for each time period.",
+    "explanation": "Each candle represents one chosen interval, such as a day. The display summarises past prices and does not predict future movement."
+  },
+  {
     "term": "Capital",
     "definition": "Money or other resources available to invest or use in a business.",
     "explanation": "In investing, capital can be exposed to loss; it is not automatically protected just because it has been invested."
@@ -97,7 +102,6 @@
   {
     "term": "Dollar-cost averaging",
     "definition": "Investing a set amount at regular intervals, regardless of the asset's current price.",
-    "aliases": ["Pound-cost averaging"],
     "explanation": "Regular investing changes the prices at which purchases are made, but it cannot guarantee a profit or protect against loss."
   },
   {
@@ -120,8 +124,13 @@
   {
     "term": "Expense ratio",
     "definition": "A measure of a fund's annual operating expenses as a proportion of its assets.",
-    "aliases": ["Ongoing charges figure", "OCF"],
     "explanation": "It does not necessarily include every cost an investor may pay, such as platform or trading charges."
+  },
+  {
+    "term": "Ongoing charges figure",
+    "definition": "A measure of the recurring costs of operating a fund, usually shown as a percentage each year.",
+    "aliases": ["OCF"],
+    "explanation": "An OCF does not necessarily include every cost, such as transaction costs or platform charges. Check the fund's documents for details."
   },
   {
     "term": "Financial adviser",
@@ -240,7 +249,6 @@
   {
     "term": "Pound-cost averaging",
     "definition": "Investing a set amount in pounds at regular intervals, regardless of the current price.",
-    "aliases": ["Dollar-cost averaging"],
     "explanation": "This approach spreads purchases across different prices but does not guarantee a profit or prevent losses."
   },
   {
@@ -287,6 +295,16 @@
     "term": "Stock",
     "definition": "An ownership interest in a company, usually represented by shares.",
     "explanation": "Stock value can rise or fall. A company may pay dividends, but it is not required to do so."
+  },
+  {
+    "term": "Stock chart",
+    "definition": "A visual display of an asset's recorded prices over a chosen period.",
+    "explanation": "Charts can use lines, bars or candles and different time ranges. They describe past prices, not what will happen next."
+  },
+  {
+    "term": "Stock quote",
+    "definition": "A snapshot of trading information for a share at a stated time.",
+    "explanation": "A quote may show the latest price, daily change, high, low, previous close and volume. Data can be delayed and may not equal the execution price."
   },
   {
     "term": "Stock exchange",

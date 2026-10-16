@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-import { SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export const alt = `${SITE_NAME} — plain-English investing education`;
 export const size = { width: 1200, height: 630 };
@@ -10,7 +10,7 @@ export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
   const font = await readFile(
-    join(process.cwd(), "assets", "fonts", "BricolageGrotesque.ttf"),
+    join(process.cwd(), "assets", "fonts", "ArchivoBlack-Regular.ttf"),
   );
 
   return new ImageResponse(
@@ -24,25 +24,39 @@ export default async function OpenGraphImage() {
         padding: "68px 76px",
         background: "#f2e9d8",
         color: "#14231f",
-        fontFamily: "Bricolage Grotesque",
+        fontFamily: "Archivo Black",
       }}
     >
-      <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>
-        {SITE_NAME}
+      <div style={{ display: "flex", fontSize: 28, fontWeight: 400 }}>
+        {SITE_NAME.slice(0, 6)}
+        <span style={{ position: "relative" }}>
+          {SITE_NAME[6]}
+          <span
+            style={{
+              position: "absolute",
+              width: 8,
+              height: 8,
+              left: "42%",
+              top: "44%",
+              background: "#d8eb68",
+            }}
+          />
+        </span>
+        {SITE_NAME.slice(7)}
       </div>
       <div
         style={{
           maxWidth: 930,
           fontSize: 82,
-          fontWeight: 800,
+          fontWeight: 400,
           lineHeight: 0.98,
           letterSpacing: "-4px",
         }}
       >
-        Investing, explained without the noise.
+        {SITE_DESCRIPTION}
       </div>
       <div style={{ display: "flex", fontSize: 24, color: "#37564d" }}>
-        Plain-English lessons for the long term.
+        Lessons, market data, and practical tools.
       </div>
       <div
         style={{
@@ -60,10 +74,10 @@ export default async function OpenGraphImage() {
       ...size,
       fonts: [
         {
-          name: "Bricolage Grotesque",
+          name: "Archivo Black",
           data: font,
           style: "normal",
-          weight: 700,
+          weight: 400,
         },
       ],
     },

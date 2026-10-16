@@ -10,6 +10,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { SITE_NAME } from "@/lib/site";
 
 export const ageGroups = [
   "Under 18",
@@ -190,7 +191,7 @@ export function AgeGroupProvider({ children }: { children: ReactNode }) {
             role="dialog"
           >
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-teal-800 dark:text-teal-200">
-              Welcome to Investing Basics
+              Welcome to {SITE_NAME}
             </p>
             <h1
               className="text-2xl font-semibold tracking-tight sm:text-3xl"

@@ -57,12 +57,55 @@ function parseNumber(value: unknown): number | undefined {
   return Number.isFinite(parsed) ? parsed : undefined;
 }
 
+function parseTimestamp(value: string): number | null {
+  const match = value.match(
+    /^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?(Z|[+-]\d{2}:\d{2})?)?$/,
+  );
+  if (!match) {
+    return null;
+  }
+
+  const [, yearText, monthText, dayText, hourText, minuteText, secondText, millisecondText, zone] =
+    match;
+  const year = Number(yearText);
+  const month = Number(monthText);
+  const day = Number(dayText);
+  const hour = Number(hourText ?? 0);
+  const minute = Number(minuteText ?? 0);
+  const second = Number(secondText ?? 0);
+  const millisecond = Number((millisecondText ?? "").padEnd(3, "0"));
+
+  if (month < 1 || month > 12 || hour > 23 || minute > 59 || second > 59) {
+    return null;
+  }
+  const calendarDate = new Date(0);
+  calendarDate.setUTCFullYear(year, month - 1, day);
+  calendarDate.setUTCHours(0, 0, 0, 0);
+  if (
+    day < 1 ||
+    calendarDate.getUTCFullYear() !== year ||
+    calendarDate.getUTCMonth() !== month - 1 ||
+    calendarDate.getUTCDate() !== day
+  ) {
+    return null;
+  }
+
+  if (zone) {
+    const zonedTime = Date.parse(value.replace(" ", "T"));
+    return Number.isFinite(zonedTime) ? zonedTime : null;
+  }
+
+  const timestamp = calendarDate.getTime() + ((hour * 60 + minute) * 60 + second) * 1000 + millisecond;
+  return Number.isFinite(timestamp) ? timestamp : null;
+}
+
 function parsePoint(value: unknown): HistoryPoint | null {
   if (!isRecord(value) || typeof value.datetime !== "string") {
     return null;
   }
+  const timestamp = parseTimestamp(value.datetime);
   const close = parseNumber(value.close);
-  if (close === undefined) {
+  if (timestamp === null || close === undefined || close <= 0) {
     return null;
   }
   const open = parseNumber(value.open);
@@ -71,17 +114,13 @@ function parsePoint(value: unknown): HistoryPoint | null {
   const volume = parseNumber(value.volume);
   return {
     time: value.datetime,
+    timestamp,
     close,
     ...(open === undefined ? {} : { open }),
     ...(high === undefined ? {} : { high }),
     ...(low === undefined ? {} : { low }),
     ...(volume === undefined ? {} : { volume }),
   };
-}
-
-function toTimestamp(time: string) {
-  const normalized = time.includes("T") ? time : time.replace(" ", "T");
-  return Date.parse(`${normalized}Z`);
 }
 
 function errorResponse(error: unknown): Response {
@@ -160,11 +199,13 @@ export async function getStockHistory(
   let points = payload.values
     .map(parsePoint)
     .filter((point): point is HistoryPoint => point !== null)
-    .sort((left, right) => toTimestamp(left.time) - toTimestamp(right.time));
+    .sort((left, right) => left.timestamp - right.timestamp);
 
   if (range === "1D" && points.length > 0) {
-    const latestTradingDate = points.at(-1)?.time.slice(0, 10);
-    points = points.filter((point) => point.time.slice(0, 10) === latestTradingDate);
+    const latestTradingDate = new Date(points.at(-1)!.timestamp).toISOString().slice(0, 10);
+    points = points.filter(
+      (point) => new Date(point.timestamp).toISOString().slice(0, 10) === latestTradingDate,
+    );
   }
   return { symbol, range, points };
 }

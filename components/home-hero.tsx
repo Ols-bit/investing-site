@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { SITE_DESCRIPTION } from "@/lib/site";
 
 export function HomeHero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -40,7 +41,7 @@ export function HomeHero() {
             Keep your head.
           </h1>
           <p className="mt-7 max-w-xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-            Straightforward lessons on shares, risk and the choices behind investing.
+            {SITE_DESCRIPTION}
           </p>
           <Link
             href="/manual"

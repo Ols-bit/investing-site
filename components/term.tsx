@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {
   useEffect,
+  useId,
   useRef,
   useState,
   type FocusEvent,
@@ -14,12 +15,9 @@ import { findGlossaryEntry } from "@/lib/glossary";
 export function Term({ children }: { children: ReactNode }) {
   const label = typeof children === "string" ? children.trim() : "";
   const entry = findGlossaryEntry(label);
+  const tooltipId = useId();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLSpanElement>(null);
-
-  if (!entry) {
-    return <>{children}</>;
-  }
 
   useEffect(() => {
     if (!open) {
@@ -35,6 +33,10 @@ export function Term({ children }: { children: ReactNode }) {
     document.addEventListener("pointerdown", closeOnOutsidePress);
     return () => document.removeEventListener("pointerdown", closeOnOutsidePress);
   }, [open]);
+
+  if (!entry) {
+    return <>{children}</>;
+  }
 
   function closeIfFocusLeaves(event: FocusEvent<HTMLSpanElement>) {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
@@ -56,6 +58,13 @@ export function Term({ children }: { children: ReactNode }) {
         }
       }}
       onBlur={closeIfFocusLeaves}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          setOpen(false);
+          containerRef.current?.querySelector("button")?.focus();
+        }
+      }}
     >
       <button
         type="button"
@@ -63,19 +72,13 @@ export function Term({ children }: { children: ReactNode }) {
         aria-expanded={open}
         onClick={() => setOpen(true)}
         onFocus={() => setOpen(true)}
-        onKeyDown={(event) => {
-          if (event.key === "Escape") {
-            event.preventDefault();
-            setOpen(false);
-          }
-        }}
         className="cursor-help border-b-2 border-dotted border-teal-800 bg-transparent p-0 font-semibold text-inherit focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-800"
       >
         {children}
       </button>
       {open && (
         <span
-          id={`term-${entry.id}-definition`}
+          id={tooltipId}
           role="dialog"
           aria-label={`${entry.term} definition`}
           className="absolute bottom-full left-0 z-30 mb-2 w-64 max-w-[calc(100vw-2rem)] border-2 border-slate-950 bg-amber-100 p-4 text-left text-sm leading-6 text-slate-950 sm:left-1/2 sm:-translate-x-1/2"

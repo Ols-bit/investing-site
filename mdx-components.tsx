@@ -1,9 +1,12 @@
 import type { MDXComponents } from "mdx/types";
 
 import { CompoundInterestCalculator } from "@/components/compound-interest-calculator";
+import { FeesVsReturnsCalculator } from "@/components/fees-vs-returns-calculator";
 import { ForAge } from "@/components/for-age";
+import { GoalPlannerCalculator } from "@/components/goal-planner-calculator";
 import { Quiz } from "@/components/quiz";
 import { Term } from "@/components/term";
+import { WhatIfInvestedCalculator } from "@/components/what-if-invested-calculator";
 
 const components: MDXComponents = {
   h1: ({ children, ...props }) => (
@@ -38,6 +41,9 @@ const components: MDXComponents = {
   ),
   ForAge,
   CompoundInterestCalculator,
+  WhatIfInvestedCalculator,
+  FeesVsReturnsCalculator,
+  GoalPlannerCalculator,
   Quiz,
   Term,
 };

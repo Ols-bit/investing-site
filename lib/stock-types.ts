@@ -30,6 +30,7 @@ export type HistoryRange = (typeof HISTORY_RANGES)[number];
 
 export type HistoryPoint = {
   time: string;
+  timestamp: number;
   close: number;
   open?: number;
   high?: number;
@@ -116,9 +117,13 @@ export function isStockHistory(value: unknown): value is StockHistory {
         typeof point === "object" &&
         "time" in point &&
         typeof point.time === "string" &&
+        "timestamp" in point &&
+        typeof point.timestamp === "number" &&
+        Number.isFinite(point.timestamp) &&
         "close" in point &&
         typeof point.close === "number" &&
-        Number.isFinite(point.close),
+        Number.isFinite(point.close) &&
+        point.close > 0,
     )
   );
 }

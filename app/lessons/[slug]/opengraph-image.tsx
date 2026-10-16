@@ -16,7 +16,7 @@ export default async function LessonOpenGraphImage({
   const { slug } = await params;
   const lesson = await getLessonFrontmatter(slug);
   const font = await readFile(
-    join(process.cwd(), "assets", "fonts", "BricolageGrotesque.ttf"),
+    join(process.cwd(), "assets", "fonts", "ArchivoBlack-Regular.ttf"),
   );
 
   return new ImageResponse(
@@ -30,17 +30,31 @@ export default async function LessonOpenGraphImage({
         padding: "68px 76px",
         background: "#f2e9d8",
         color: "#14231f",
-        fontFamily: "Bricolage Grotesque",
+        fontFamily: "Archivo Black",
       }}
     >
-      <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>
-        {SITE_NAME} / THE MANUAL
+      <div style={{ display: "flex", fontSize: 28, fontWeight: 400 }}>
+        {SITE_NAME.slice(0, 6)}
+        <span style={{ position: "relative" }}>
+          {SITE_NAME[6]}
+          <span
+            style={{
+              position: "absolute",
+              width: 8,
+              height: 8,
+              left: "42%",
+              top: "44%",
+              background: "#d8eb68",
+            }}
+          />
+        </span>
+        {SITE_NAME.slice(7)} / THE MANUAL
       </div>
       <div
         style={{
           maxWidth: 1020,
           fontSize: lesson && lesson.title.length > 36 ? 68 : 86,
-          fontWeight: 800,
+          fontWeight: 400,
           lineHeight: 1,
           letterSpacing: "-3px",
         }}
@@ -66,10 +80,10 @@ export default async function LessonOpenGraphImage({
       ...size,
       fonts: [
         {
-          name: "Bricolage Grotesque",
+          name: "Archivo Black",
           data: font,
           style: "normal",
-          weight: 700,
+          weight: 400,
         },
       ],
     },

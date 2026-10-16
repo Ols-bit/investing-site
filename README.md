@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InvestoLearn
+
+InvestoLearn offers plain-English lessons and tools for understanding shares, markets and investment risk.
 
 ## Getting Started
 
@@ -18,11 +20,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The site uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to load Geist for body text and Bricolage Grotesque for headings.
 
 ## Market data
 
-The Markets page uses Finnhub for stock searches and quotes. Set `FINNHUB_API_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration for deployment. Historical stock charts use Twelve Data and require `TWELVEDATA_API_KEY` in the same server-side configuration. Keep both variables private; do not rename them with a `NEXT_PUBLIC_` prefix.
+The Markets and News pages use Finnhub for stock searches, quotes, movers and news. Set `FINNHUB_API_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration for deployment. Historical stock charts and the "What if I'd invested" calculator use Twelve Data and require `TWELVEDATA_API_KEY` in the same server-side configuration. Keep both API keys private; do not rename them with a `NEXT_PUBLIC_` prefix.
+
+## Site metadata
+
+Set `NEXT_PUBLIC_SITE_URL` to the site's public HTTPS origin, such as `https://your-domain.example`, in `.env.local` and your deployment environment. It is used for canonical links, the sitemap, robots metadata and structured data. A placeholder fallback is used when it is not set, so configure the real production URL before launch. This variable is a public URL, not a secret.
 
 ## Learn More
 

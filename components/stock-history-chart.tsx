@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  Component,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   HISTORY_RANGES,
   isStockHistory,
@@ -42,13 +49,23 @@ function formatPrice(value: number) {
   }).format(value);
 }
 
-function parsePointTime(point: HistoryPoint) {
-  const normalized = point.time.includes("T") ? point.time : point.time.replace(" ", "T");
-  return new Date(`${normalized}Z`);
+function pointDate(point?: HistoryPoint) {
+  if (!point || !Number.isFinite(point.timestamp)) {
+    return null;
+  }
+  const date = new Date(point.timestamp);
+  return Number.isFinite(date.getTime()) ? date : null;
 }
 
-function formatAxisTime(point: HistoryPoint, range: HistoryRange) {
-  const date = parsePointTime(point);
+function formatAxisTime(
+  point: HistoryPoint | undefined,
+  range: HistoryRange,
+  spansManyYears: boolean,
+) {
+  const date = pointDate(point);
+  if (!date) {
+    return "";
+  }
   if (range === "1D") {
     return new Intl.DateTimeFormat(undefined, {
       hour: "numeric",
@@ -56,21 +73,90 @@ function formatAxisTime(point: HistoryPoint, range: HistoryRange) {
       timeZone: "UTC",
     }).format(date);
   }
+  if (range === "1W") {
+    return new Intl.DateTimeFormat(undefined, {
+      weekday: "short",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: "UTC",
+    }).format(date);
+  }
+  if (range === "1M" || range === "3M" || range === "6M" || range === "YTD") {
+    return new Intl.DateTimeFormat(undefined, {
+      day: "numeric",
+      month: "short",
+      timeZone: "UTC",
+    }).format(date);
+  }
+  if (range === "ALL" && spansManyYears) {
+    return new Intl.DateTimeFormat(undefined, {
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(date);
+  }
   return new Intl.DateTimeFormat(undefined, {
     month: "short",
-    day: "numeric",
+    year: "numeric",
     timeZone: "UTC",
   }).format(date);
 }
 
 function formatTooltipTime(point: HistoryPoint, range: HistoryRange) {
+  const date = pointDate(point);
+  if (!date) {
+    return "";
+  }
   return new Intl.DateTimeFormat(undefined, {
-    ...(range === "1D"
-      ? { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }
-      : { year: "numeric", month: "short", day: "numeric" }),
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
     timeZone: "UTC",
-    timeZoneName: range === "1D" ? "short" : undefined,
-  }).format(parsePointTime(point));
+    timeZoneName: range === "1D" || range === "1W" ? "short" : undefined,
+  }).format(date);
+}
+
+type ChartErrorBoundaryProps = {
+  children: ReactNode;
+  onRetry: () => void;
+};
+
+type ChartErrorBoundaryState = {
+  hasError: boolean;
+};
+
+class ChartErrorBoundary extends Component<
+  ChartErrorBoundaryProps,
+  ChartErrorBoundaryState
+> {
+  state: ChartErrorBoundaryState = { hasError: false };
+
+  static getDerivedStateFromError(): ChartErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="border-l-4 border-rose-700 bg-rose-50 p-5" role="alert">
+          <p className="font-bold text-rose-950">Couldn&apos;t draw this chart.</p>
+          <p className="mt-1 text-sm leading-6 text-rose-900">
+            The price data could not be displayed. Try loading it again.
+          </p>
+          <button
+            type="button"
+            onClick={this.props.onRetry}
+            className="mt-3 min-h-10 border border-rose-800 px-4 py-2 text-sm font-bold text-rose-900 transition-colors hover:bg-rose-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700"
+          >
+            Retry chart
+          </button>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
 }
 
 function ChartSkeleton() {
@@ -87,7 +173,20 @@ function ChartSkeleton() {
 function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const points = data.points;
+  const points = useMemo(
+    () =>
+      data.points
+        .filter(
+          (point) =>
+              point !== null &&
+              typeof point === "object" &&
+              Number.isFinite(point.timestamp) &&
+            Number.isFinite(point.close) &&
+            point.close > 0,
+        )
+        .sort((first, second) => first.timestamp - second.timestamp),
+    [data.points],
+  );
 
   const plot = useMemo(() => {
     const plotWidth = WIDTH - PADDING.left - PADDING.right;
@@ -109,7 +208,12 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
     const last = points[points.length - 1].close;
     const change = last - first;
     const percentChange = first === 0 ? 0 : (change / first) * 100;
-    const active = activeIndex === null ? null : points[activeIndex];
+    const safeActiveIndex =
+      activeIndex === null
+        ? null
+        : Math.min(points.length - 1, Math.max(0, activeIndex));
+    const active =
+      safeActiveIndex === null ? null : points[safeActiveIndex] ?? null;
     const up = change >= 0;
     const color = up ? "#176b45" : "#b83f2c";
 
@@ -128,7 +232,13 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
       active,
       up,
       color,
-      activeX: activeIndex === null ? null : x(activeIndex),
+      activeX: safeActiveIndex === null ? null : x(safeActiveIndex),
+      activeIndex: safeActiveIndex,
+      spansManyYears:
+        points.length > 1 &&
+        new Date(points[points.length - 1].timestamp).getUTCFullYear() -
+          new Date(points[0].timestamp).getUTCFullYear() >=
+          5,
     };
   }, [activeIndex, points]);
 
@@ -141,8 +251,24 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
       Math.max(0, svgX - PADDING.left),
     );
     const fraction = clampedX / plot.plotWidth;
-    setActiveIndex(Math.round(fraction * (points.length - 1)));
+    const index = Math.round(fraction * (points.length - 1));
+    setActiveIndex(Math.min(points.length - 1, Math.max(0, index)));
   }
+
+  if (points.length === 0) {
+    return (
+      <p className="border-t border-slate-300 py-6 text-sm text-slate-600" role="status">
+        No valid price history is available for this range.
+      </p>
+    );
+  }
+  const tickIndexes = [
+    0,
+    Math.floor((points.length - 1) / 2),
+    points.length - 1,
+  ]
+    .map((index) => Math.min(points.length - 1, Math.max(0, index)))
+    .filter((index, position, all) => all.indexOf(index) === position);
 
   return (
     <div>
@@ -262,20 +388,21 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
               }
             }}
           />
-          {[0, Math.floor((points.length - 1) / 2), points.length - 1]
-            .filter((index, position, all) => all.indexOf(index) === position)
-            .map((index) => (
+          {tickIndexes.map((index) => {
+            const point = points[index];
+            return (
               <text
-                key={`${index}-${points[index].time}`}
+                key={`${index}-${point?.time ?? ""}`}
                 x={plot.x(index)}
                 y={HEIGHT - 8}
                 textAnchor={index === 0 ? "start" : index === points.length - 1 ? "end" : "middle"}
                 fill="#65736a"
                 fontSize="11"
               >
-                {formatAxisTime(points[index], range)}
+                {formatAxisTime(point, range, plot.spansManyYears)}
               </text>
-            ))}
+            );
+          })}
         </svg>
         {plot.active && (
           <div
@@ -286,7 +413,8 @@ function PricePlot({ data, range }: { data: StockHistory; range: HistoryRange })
                 Math.min(
                   ((WIDTH - PADDING.right) / WIDTH) * 100,
                   ((PADDING.left +
-                    (activeIndex! / Math.max(points.length - 1, 1)) *
+                    ((plot.activeIndex ?? points.length - 1) /
+                      Math.max(points.length - 1, 1)) *
                       plot.plotWidth) /
                     WIDTH) *
                     100,
@@ -397,7 +525,12 @@ export function StockHistoryChart({ symbol }: StockHistoryChartProps) {
         </p>
       )}
       {currentView?.data && currentView.data.points.length > 0 && (
-        <PricePlot data={currentView.data} range={range} />
+        <ChartErrorBoundary
+          key={`${key}:${retryCount}`}
+          onRetry={() => setRetryCount((count) => count + 1)}
+        >
+          <PricePlot data={currentView.data} range={range} />
+        </ChartErrorBoundary>
       )}
     </section>
   );

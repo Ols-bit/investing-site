@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { LessonShell } from "@/components/lesson-shell";
 import { getLessonBySlug, getLessonProgress, lessons, manualLessons } from "@/lib/lessons";
 import { getLessonFrontmatter } from "@/lib/lesson-frontmatter";
-import { createPageMetadata, SITE_NAME } from "@/lib/site";
+import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/site";
 
 import WhyInvestLesson from "@/content/lessons/01-why-invest.mdx";
 import AssetClassesLesson from "@/content/lessons/asset-classes.mdx";
@@ -108,7 +108,7 @@ export default async function LessonPage({
     "@type": "Article",
     headline: frontmatter?.title ?? lesson.title,
     description: frontmatter?.description ?? lesson.summary,
-    mainEntityOfPage: new URL(`/lessons/${slug}`, process.env.NEXT_PUBLIC_SITE_URL || "https://fieldnotes.example").toString(),
+    mainEntityOfPage: new URL(`/lessons/${slug}`, SITE_URL).toString(),
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { SITE_NAME } from "@/lib/site";
+import { BrandWordmark } from "@/components/brand-wordmark";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
@@ -122,7 +122,7 @@ export function SiteNavigation() {
           className="shrink-0 font-display text-xl font-extrabold tracking-tight text-slate-950 transition-colors hover:text-teal-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700"
           onClick={closeMenu}
         >
-          {SITE_NAME}
+          <BrandWordmark />
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
@@ -181,7 +181,9 @@ export function SiteNavigation() {
         >
           <div className="mx-auto flex min-h-full max-w-xl flex-col">
             <div className="mb-8 flex items-center justify-between">
-              <span className="font-display text-xl font-extrabold text-slate-950">{SITE_NAME}</span>
+              <span className="font-display text-xl font-extrabold text-slate-950">
+                <BrandWordmark />
+              </span>
               <button
                 type="button"
                 onClick={() => {

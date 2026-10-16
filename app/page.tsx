@@ -3,11 +3,16 @@ import type { Metadata } from "next";
 import { HomeHero } from "@/components/home-hero";
 import { MarketTicker } from "@/components/market-ticker";
 import { DeferredHomepageSection } from "@/components/deferred-homepage-section";
-import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  createPageMetadata,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata(
   SITE_NAME,
-  "Plain-English lessons on investing, risk, markets, and long-term thinking.",
+  SITE_DESCRIPTION,
   "/",
 );
 
@@ -17,7 +22,7 @@ export default function Home() {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    description: "Plain-English lessons on investing, risk, markets, and long-term thinking.",
+    description: SITE_DESCRIPTION,
   };
 
   return (

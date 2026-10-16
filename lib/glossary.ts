@@ -18,10 +18,12 @@ export function glossarySlug(term: string) {
     .replace(/^-|-$/g, "");
 }
 
-export const glossaryTerms: GlossaryEntry[] = glossaryEntries.map((entry) => ({
-  ...entry,
-  id: glossarySlug(entry.term),
-}));
+export const glossaryTerms: GlossaryEntry[] = glossaryEntries
+  .map((entry) => ({
+    ...entry,
+    id: glossarySlug(entry.term),
+  }))
+  .sort((first, second) => first.term.localeCompare(second.term, "en"));
 
 export function findGlossaryEntry(label: string) {
   const normalizedLabel = label.toLowerCase().replace(/[^a-z0-9]/g, "");
