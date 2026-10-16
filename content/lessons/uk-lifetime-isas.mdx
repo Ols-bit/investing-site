@@ -1,0 +1,42 @@
+---
+title: "Lifetime ISAs"
+description: "Understand the Lifetime ISA's first-home and later-life purposes, government bonus, age rules and withdrawal conditions."
+---
+
+import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
+import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
+
+A <Term>Lifetime ISA</Term> is a UK account intended for an eligible first-home purchase or later life. It can hold cash or investments. The account rules include a government bonus, but withdrawals for other reasons may be subject to a charge.
+
+## Contribution and withdrawal rules
+
+In the {ukFigures.taxYear} tax year, the contribution limit is £{formatUKPounds(ukFigures.lisaAnnualContributionLimit)} per year. A government bonus of {ukFigures.lisaBonusPercent}% may be added to eligible contributions, up to £{formatUKPounds(ukFigures.lisaMaximumAnnualBonus)} in that tax year. The contribution limit counts towards the overall ISA allowance.
+
+You must make your first payment before age {ukFigures.lisaLastAgeToOpen}. Contributions and the bonus stop at age {ukFigures.lisaLastAgeToContribute}. The permitted first-home use has conditions, including rules about the property and how long the account has been open. Read the current guidance before relying on the account for a purchase.
+
+## Worked example
+
+If an eligible saver contributes £{formatUKPounds(ukFigures.examples.lifetimeIsaContribution)}, the {ukFigures.lisaBonusPercent}% bonus would be £{formatUKPounds(ukExamples.lifetimeIsaBonus)}. That describes the bonus arithmetic only: it does not account for investment changes, fees, eligibility, or withdrawal charges.
+
+## Rules can change
+
+Tax rules can change and may depend on your circumstances. Check current GOV.UK guidance before making a decision. This lesson is educational and is not personal advice.
+
+<Quiz
+  lessonId="uk-lifetime-isas"
+  questions={[
+    {
+      question: "What is one stated purpose of a Lifetime ISA?",
+      options: ["An eligible first home or later life.", "Short-term emergency borrowing.", "A guaranteed investment return."],
+      correctAnswerIndex: 0,
+      explanation: "The account is designed for eligible first-home purchases or later-life saving, with conditions."
+    },
+    {
+      question: "Does the government bonus remove investment risk?",
+      options: ["Yes, it protects the account value.", "No, investments can still fall and withdrawal rules still apply.", "Only when markets are closed."],
+      correctAnswerIndex: 1,
+      explanation: "A bonus is not a guarantee against investment losses or a change in value."
+    }
+  ]}
+/>

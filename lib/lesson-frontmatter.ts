@@ -27,6 +27,12 @@ const lessonFiles: Record<string, string> = {
   "manual-position-sizing": "manual-position-sizing.mdx",
   "manual-fees-and-taxes": "manual-fees-and-taxes.mdx",
   "manual-beginner-mistakes": "manual-beginner-mistakes.mdx",
+  "uk-stocks-and-shares-isas": "uk-stocks-and-shares-isas.mdx",
+  "uk-lifetime-isas": "uk-lifetime-isas.mdx",
+  "uk-sipps-and-personal-pensions": "uk-sipps-and-personal-pensions.mdx",
+  "uk-workplace-pensions": "uk-workplace-pensions.mdx",
+  "uk-investing-tax-basics": "uk-investing-tax-basics.mdx",
+  "uk-platforms-and-fees": "uk-platforms-and-fees.mdx",
 };
 
 export async function getLessonFrontmatter(

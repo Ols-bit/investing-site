@@ -9,6 +9,8 @@ import {
   useMemo,
   type ReactNode,
 } from "react";
+import { BADGES, earnedBadgeIds, type Badge } from "@/lib/badges";
+import { learningPaths } from "@/content/paths";
 
 const STORAGE_KEY = "investing-site-lesson-progress";
 const STORAGE_ERROR =
@@ -21,24 +23,49 @@ type LessonProgressRecord = {
 
 type LessonProgressMap = Record<string, LessonProgressRecord>;
 
+export type RiskProfileResult = {
+  type: "careful-planner" | "steady-builder" | "long-view-explorer" | "curious-learner";
+  completedAt: string;
+};
+
+type LearningData = {
+  activityDays: string[];
+  quizIds: string[];
+  riskProfile: RiskProfileResult | null;
+};
+
 type LessonProgressContextValue = {
   progress: LessonProgressMap;
+  learning: LearningData;
+  badgeToast: Badge | null;
   ready: boolean;
   storageError: string | null;
   markComplete: (lessonId: string) => void;
   recordQuizScore: (lessonId: string, score: number, questionCount: number) => void;
+  saveRiskProfile: (result: RiskProfileResult) => void;
+  dismissBadgeToast: () => void;
 };
 
 const LessonProgressContext = createContext<LessonProgressContextValue | null>(null);
 
 type LessonProgressSnapshot = {
   progress: LessonProgressMap;
+  learning: LearningData;
+  badgeToast: Badge | null;
   ready: boolean;
   storageError: string | null;
 };
 
+const EMPTY_LEARNING_DATA: LearningData = {
+  activityDays: [],
+  quizIds: [],
+  riskProfile: null,
+};
+
 const INITIAL_SNAPSHOT: LessonProgressSnapshot = {
   progress: {},
+  learning: EMPTY_LEARNING_DATA,
+  badgeToast: null,
   ready: false,
   storageError: null,
 };
@@ -46,12 +73,11 @@ let lessonProgressSnapshot = INITIAL_SNAPSHOT;
 let hasInitializedStore = false;
 const subscribers = new Set<() => void>();
 
-function parseProgress(rawValue: string | null): LessonProgressMap {
-  if (rawValue === null) {
-    return {};
-  }
+function isDayKey(value: unknown): value is string {
+  return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
 
-  const value: unknown = JSON.parse(rawValue);
+function parseLessonRecords(value: unknown): LessonProgressMap {
   if (value === null || typeof value !== "object" || Array.isArray(value)) {
     throw new Error("Saved lesson progress has an invalid format.");
   }
@@ -83,6 +109,90 @@ function parseProgress(rawValue: string | null): LessonProgressMap {
   return progress;
 }
 
+function parseLearningData(value: unknown): LearningData {
+  if (value === undefined) return EMPTY_LEARNING_DATA;
+  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error("Saved learning activity has an invalid format.");
+  }
+  const record = value as Record<string, unknown>;
+  const activityDays = record.activityDays;
+  const quizIds = record.quizIds;
+  const riskProfile = record.riskProfile;
+  const validRiskProfile =
+    riskProfile === null ||
+    (riskProfile !== null &&
+      typeof riskProfile === "object" &&
+      "type" in riskProfile &&
+      [
+        "careful-planner",
+        "steady-builder",
+        "long-view-explorer",
+        "curious-learner",
+      ].includes(String(riskProfile.type)) &&
+      "completedAt" in riskProfile &&
+      typeof riskProfile.completedAt === "string" &&
+      Number.isFinite(Date.parse(riskProfile.completedAt)));
+
+  if (
+    !Array.isArray(activityDays) ||
+    !activityDays.every(isDayKey) ||
+    !Array.isArray(quizIds) ||
+    !quizIds.every((id) => typeof id === "string" && id.length > 0) ||
+    !validRiskProfile
+  ) {
+    throw new Error("Saved learning activity has an invalid format.");
+  }
+
+  return {
+    activityDays: [...new Set(activityDays)].sort(),
+    quizIds: [...new Set(quizIds)],
+    riskProfile:
+      riskProfile === null
+        ? null
+        : {
+            type: riskProfile.type as RiskProfileResult["type"],
+            completedAt: riskProfile.completedAt as string,
+          },
+  };
+}
+
+function parseProgress(rawValue: string | null): Pick<LessonProgressSnapshot, "progress" | "learning"> {
+  if (rawValue === null) {
+    return { progress: {}, learning: EMPTY_LEARNING_DATA };
+  }
+
+  const value: unknown = JSON.parse(rawValue);
+  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error("Saved lesson progress has an invalid format.");
+  }
+
+  if ("version" in value && "lessons" in value) {
+    if (value.version !== 2) {
+      throw new Error("Saved learning data uses an unsupported version.");
+    }
+    return {
+      progress: parseLessonRecords(value.lessons),
+      learning: parseLearningData("learning" in value ? value.learning : undefined),
+    };
+  }
+
+  return { progress: parseLessonRecords(value), learning: EMPTY_LEARNING_DATA };
+}
+
+function localDayKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function withActivity(learning: LearningData) {
+  return {
+    ...learning,
+    activityDays: [...new Set([...learning.activityDays, localDayKey()])].sort(),
+  };
+}
+
 function getSnapshot() {
   return lessonProgressSnapshot;
 }
@@ -103,7 +213,8 @@ function subscribe(subscriber: () => void) {
     hasInitializedStore = true;
     try {
       lessonProgressSnapshot = {
-        progress: parseProgress(window.localStorage.getItem(STORAGE_KEY)),
+        ...parseProgress(window.localStorage.getItem(STORAGE_KEY)),
+        badgeToast: null,
         ready: true,
         storageError: null,
       };
@@ -111,6 +222,8 @@ function subscribe(subscriber: () => void) {
       console.error("Unable to load saved lesson progress.", error);
       lessonProgressSnapshot = {
         progress: {},
+        learning: EMPTY_LEARNING_DATA,
+        badgeToast: null,
         ready: true,
         storageError: STORAGE_ERROR,
       };
@@ -120,14 +233,36 @@ function subscribe(subscriber: () => void) {
   return () => subscribers.delete(subscriber);
 }
 
-function saveProgress(nextProgress: LessonProgressMap) {
+function saveProgress(nextProgress: LessonProgressMap, nextLearning = lessonProgressSnapshot.learning) {
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextProgress));
-    updateSnapshot({ progress: nextProgress, ready: true, storageError: null });
+    const now = new Date();
+    const previouslyEarned = earnedBadgeIds(
+      lessonProgressSnapshot.progress,
+      lessonProgressSnapshot.learning,
+      learningPaths,
+      now,
+    );
+    const nextEarned = earnedBadgeIds(nextProgress, nextLearning, learningPaths, now);
+    const newlyEarned = BADGES.find(
+      (badge) => nextEarned.has(badge.id) && !previouslyEarned.has(badge.id),
+    );
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ version: 2, lessons: nextProgress, learning: nextLearning }),
+    );
+    updateSnapshot({
+      progress: nextProgress,
+      learning: nextLearning,
+      badgeToast: newlyEarned ?? null,
+      ready: true,
+      storageError: null,
+    });
   } catch (error) {
     console.error("Unable to save lesson progress.", error);
     updateSnapshot({
       progress: nextProgress,
+      learning: nextLearning,
+      badgeToast: null,
       ready: true,
       storageError: STORAGE_ERROR,
     });
@@ -145,7 +280,8 @@ export function LessonProgressProvider({ children }: { children: ReactNode }) {
 
       try {
         updateSnapshot({
-          progress: parseProgress(event.newValue),
+          ...parseProgress(event.newValue),
+          badgeToast: null,
           ready: true,
           storageError: null,
         });
@@ -171,7 +307,7 @@ export function LessonProgressProvider({ children }: { children: ReactNode }) {
       saveProgress({
         ...lessonProgressSnapshot.progress,
         [lessonId]: { ...previous, completed: true },
-      });
+      }, previous.completed ? lessonProgressSnapshot.learning : withActivity(lessonProgressSnapshot.learning));
     },
     [],
   );
@@ -189,26 +325,44 @@ export function LessonProgressProvider({ children }: { children: ReactNode }) {
       };
       const scorePercent = Math.round((score / questionCount) * 100);
       const passingScore = Math.ceil((questionCount * 2) / 3);
+      const nextLearning = withActivity({
+        ...lessonProgressSnapshot.learning,
+        quizIds: [...new Set([...lessonProgressSnapshot.learning.quizIds, lessonId])],
+      });
       saveProgress({
         ...currentProgress,
         [lessonId]: {
           completed: previous.completed || score >= passingScore,
           bestQuizScore: Math.max(previous.bestQuizScore ?? 0, scorePercent),
         },
-      });
+      }, nextLearning);
     },
     [],
   );
 
+  const saveRiskProfile = useCallback((result: RiskProfileResult) => {
+    saveProgress(
+      lessonProgressSnapshot.progress,
+      withActivity({
+        ...lessonProgressSnapshot.learning,
+        riskProfile: result,
+      }),
+    );
+  }, []);
+
   const contextValue = useMemo(
     () => ({
       progress: snapshot.progress,
+      learning: snapshot.learning,
       ready: snapshot.ready,
       storageError: snapshot.storageError,
       markComplete,
       recordQuizScore,
+      saveRiskProfile,
+      badgeToast: snapshot.badgeToast,
+      dismissBadgeToast: () => updateSnapshot({ ...lessonProgressSnapshot, badgeToast: null }),
     }),
-    [snapshot, markComplete, recordQuizScore],
+    [snapshot, markComplete, recordQuizScore, saveRiskProfile],
   );
 
   return (

@@ -1,0 +1,42 @@
+---
+title: "Workplace pensions and auto-enrolment"
+description: "Learn the basics of UK workplace pensions, auto-enrolment and how worker and employer contributions can add up."
+---
+
+import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
+import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
+
+A <Term>workplace pension</Term> is a pension arranged through an employer. Under <Term>auto-enrolment</Term>, eligible workers are usually enrolled into a pension scheme, with contributions from the worker and employer under current rules.
+
+## How contributions work
+
+In most automatic-enrolment schemes, minimum contributions are calculated using a band of <Term>qualifying earnings</Term>. For the {ukFigures.taxYear} tax year, the band runs from £{formatUKPounds(ukFigures.workplaceQualifyingEarningsLower)} to £{formatUKPounds(ukFigures.workplaceQualifyingEarningsUpper)} a year. The usual minimum is {ukFigures.workplaceEmployeeMinimumPercent}% from the worker and {ukFigures.workplaceEmployerMinimumPercent}% from the employer, making {ukFigures.workplaceCombinedMinimumPercent}% in total. Scheme rules can result in different contribution calculations.
+
+Your payslip, pension scheme and employer information explain how contributions are actually calculated. Leaving a scheme may mean missing employer contributions; consider getting guidance before making a change.
+
+## Worked example
+
+If £{formatUKPounds(ukFigures.examples.workplaceQualifyingPay)} is eligible pay for an example calculation, a {ukFigures.workplaceEmployeeMinimumPercent}% worker contribution is £{formatUKPounds(ukExamples.workplaceEmployeeContribution)} and a {ukFigures.workplaceEmployerMinimumPercent}% employer contribution is £{formatUKPounds(ukExamples.workplaceEmployerContribution)}. Together, £{formatUKPounds(ukExamples.workplaceEmployeeContribution + ukExamples.workplaceEmployerContribution)} goes into the pension before any separate tax-relief treatment. Real payroll calculations depend on scheme rules and earnings.
+
+## Rules can change
+
+Eligibility and contribution rules can change. Check current GOV.UK guidance and your scheme documents. This lesson is educational and is not personal advice.
+
+<Quiz
+  lessonId="uk-workplace-pensions"
+  questions={[
+    {
+      question: "Who may contribute to a workplace pension?",
+      options: ["Only the worker.", "The worker and employer, under the scheme rules.", "Only the government."],
+      correctAnswerIndex: 1,
+      explanation: "Workplace pension contributions can include both worker and employer contributions."
+    },
+    {
+      question: "What should you check to understand your actual contributions?",
+      options: ["Your scheme rules and payroll information.", "A stock price chart.", "Only the name of the pension."],
+      correctAnswerIndex: 0,
+      explanation: "Contribution calculations can differ by scheme, so check the documents and information from your employer."
+    }
+  ]}
+/>

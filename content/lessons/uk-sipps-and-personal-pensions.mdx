@@ -1,0 +1,42 @@
+---
+title: "SIPPs and personal pensions"
+description: "Explore how UK personal pensions and SIPPs work, how tax relief may be added and why investments and access rules matter."
+---
+
+import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
+import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
+
+A <Term>personal pension</Term> is a way to save for retirement outside a workplace pension. A <Term>SIPP</Term> is a self-invested personal pension: it can offer a wider choice of investments, but choosing investments and understanding their risks remains important.
+
+## Tax relief and limits
+
+Eligible pension contributions can receive <Term>pension tax relief</Term> under the rules for the scheme and the person contributing. With relief at source, a provider claims basic-rate relief and adds it to the pension; some people may need to claim additional relief themselves. Tax relief is not the same as an employer contribution, and it does not mean the investment itself is risk-free.
+
+For the {ukFigures.taxYear} tax year, the standard <Term>pension annual allowance</Term> is £{formatUKPounds(ukFigures.pensionAnnualAllowance)} across relevant pension saving, but it can be lower for some people. People with no relevant earnings may still qualify for relief on contributions up to a gross £{formatUKPounds(ukFigures.pensionGrossLimitWithoutEarnings)} under current rules.
+
+## Worked example
+
+For a simple relief-at-source illustration, a net contribution of £{formatUKPounds(ukFigures.examples.pensionNetContribution)} with relief at {ukFigures.pensionReliefAtSourceBasicRatePercent}% would receive £{formatUKPounds(ukExamples.pensionTaxRelief)} of basic-rate relief, giving £{formatUKPounds(ukFigures.examples.pensionNetContribution + ukExamples.pensionTaxRelief)} in the pension. This example is not a personal tax calculation. The treatment depends on eligibility, earnings and scheme rules.
+
+## Rules can change
+
+Pension tax treatment and access rules can change and may depend on your circumstances. Check current GOV.UK guidance or speak to a qualified adviser. This lesson is educational and is not personal advice.
+
+<Quiz
+  lessonId="uk-sipps-and-personal-pensions"
+  questions={[
+    {
+      question: "What does SIPP stand for?",
+      options: ["Self-invested personal pension.", "Savings interest payment plan.", "Standard investment protection policy."],
+      correctAnswerIndex: 0,
+      explanation: "A SIPP is a type of personal pension that can offer investment choice."
+    },
+    {
+      question: "Does pension tax relief guarantee an investment outcome?",
+      options: ["Yes, it prevents losses.", "No, it affects tax treatment; investments can still rise or fall.", "Yes, but only in a SIPP."],
+      correctAnswerIndex: 1,
+      explanation: "Tax relief and investment performance are different things."
+    }
+  ]}
+/>

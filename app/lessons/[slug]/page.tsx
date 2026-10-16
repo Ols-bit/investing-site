@@ -23,6 +23,12 @@ import DiversificationLesson from "@/content/lessons/manual-diversification.mdx"
 import PositionSizingLesson from "@/content/lessons/manual-position-sizing.mdx";
 import FeesAndTaxesLesson from "@/content/lessons/manual-fees-and-taxes.mdx";
 import BeginnerMistakesLesson from "@/content/lessons/manual-beginner-mistakes.mdx";
+import UKStocksAndSharesISAsLesson from "@/content/lessons/uk-stocks-and-shares-isas.mdx";
+import UKLifetimeISAsLesson from "@/content/lessons/uk-lifetime-isas.mdx";
+import UKSIPPsAndPersonalPensionsLesson from "@/content/lessons/uk-sipps-and-personal-pensions.mdx";
+import UKWorkplacePensionsLesson from "@/content/lessons/uk-workplace-pensions.mdx";
+import UKInvestingTaxBasicsLesson from "@/content/lessons/uk-investing-tax-basics.mdx";
+import UKPlatformsAndFeesLesson from "@/content/lessons/uk-platforms-and-fees.mdx";
 
 const lessonComponents = {
   "why-invest": WhyInvestLesson,
@@ -42,6 +48,12 @@ const lessonComponents = {
   "manual-position-sizing": PositionSizingLesson,
   "manual-fees-and-taxes": FeesAndTaxesLesson,
   "manual-beginner-mistakes": BeginnerMistakesLesson,
+  "uk-stocks-and-shares-isas": UKStocksAndSharesISAsLesson,
+  "uk-lifetime-isas": UKLifetimeISAsLesson,
+  "uk-sipps-and-personal-pensions": UKSIPPsAndPersonalPensionsLesson,
+  "uk-workplace-pensions": UKWorkplacePensionsLesson,
+  "uk-investing-tax-basics": UKInvestingTaxBasicsLesson,
+  "uk-platforms-and-fees": UKPlatformsAndFeesLesson,
 } as const;
 
 export async function generateStaticParams() {

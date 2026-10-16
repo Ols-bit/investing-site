@@ -344,6 +344,61 @@
     "explanation": "High volatility means prices have moved more sharply, but it does not show which direction prices will move next."
   },
   {
+    "term": "Annual exempt amount",
+    "definition": "The amount of qualifying capital gains an individual can make in a UK tax year before Capital Gains Tax may be due.",
+    "explanation": "The allowance can change and tax depends on the asset, account, losses and personal circumstances. Check current GOV.UK guidance."
+  },
+  {
+    "term": "Auto-enrolment",
+    "definition": "A UK system that requires employers to enrol eligible workers into a workplace pension, subject to rules and opt-out rights.",
+    "explanation": "Eligibility, contribution calculations and scheme details matter; check current guidance and workplace documents."
+  },
+  {
+    "term": "Dividend allowance",
+    "definition": "A UK tax allowance for dividend income outside tax-advantaged accounts.",
+    "explanation": "The allowance and tax treatment can change. Dividends within an eligible ISA are generally not subject to UK dividend tax."
+  },
+  {
+    "term": "Investment platform",
+    "definition": "A service that lets customers hold an investment account and access investments.",
+    "explanation": "Platforms differ in services, available accounts, investments and fees; no platform is right for everyone."
+  },
+  {
+    "term": "Lifetime ISA",
+    "definition": "A UK ISA designed for an eligible first-home purchase or later-life saving, with specific contribution and withdrawal rules.",
+    "explanation": "Eligible contributions can receive a government bonus, but withdrawal conditions and charges apply. Check current GOV.UK guidance."
+  },
+  {
+    "term": "Pension annual allowance",
+    "definition": "The limit on pension saving that can receive tax-advantaged treatment in a UK tax year before a tax charge may apply.",
+    "explanation": "The allowance can be reduced in some circumstances. Check current rules for your situation."
+  },
+  {
+    "term": "Pension tax relief",
+    "definition": "Tax relief that may be added to eligible UK pension contributions or claimed by the contributor.",
+    "explanation": "How relief is applied depends on the pension arrangement, earnings and tax situation. Relief does not guarantee investment returns."
+  },
+  {
+    "term": "Personal pension",
+    "definition": "A pension arrangement an individual sets up with a provider, rather than one arranged through an employer.",
+    "explanation": "A SIPP is one type of personal pension. Contribution relief, investment choices, charges and access rules can vary."
+  },
+  {
+    "term": "Qualifying earnings",
+    "definition": "The band of earnings used to calculate minimum contributions in many UK automatic-enrolment pension schemes.",
+    "explanation": "The qualifying band and contribution rules can change, and some workplace schemes calculate contributions differently."
+  },
+  {
+    "term": "Stocks and Shares ISA",
+    "definition": "A UK ISA that can hold eligible investments under tax-advantaged account rules.",
+    "explanation": "Tax treatment does not protect investments from market losses or remove charges."
+  },
+  {
+    "term": "Workplace pension",
+    "definition": "A pension scheme arranged by an employer, often with contributions from the worker and employer.",
+    "explanation": "Contribution rules and investment options depend on the scheme. Tax relief and investment risk are separate considerations."
+  },
+  {
     "term": "Yield",
     "definition": "Income from an investment expressed relative to its price or value.",
     "explanation": "Different products calculate yield in different ways. A quoted yield may change and should not be treated as guaranteed future income."

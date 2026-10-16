@@ -13,7 +13,8 @@ export type ManualStageName =
   | "Your first trade"
   | "Reading the market"
   | "Managing risk"
-  | "Common mistakes";
+  | "Common mistakes"
+  | "Investing in the UK";
 
 export type ManualStage = {
   name: ManualStageName;
@@ -227,6 +228,72 @@ export const manualStages: ManualStage[] = [
         stage: "Common mistakes",
         track: "manual",
         sources: ["https://www.finra.org/investors/insights/investing-basics"],
+      },
+    ],
+  },
+  {
+    name: "Investing in the UK",
+    summary: "Understand UK accounts, pensions, tax basics and platform charges without product recommendations.",
+    lessons: [
+      {
+        slug: "uk-stocks-and-shares-isas",
+        title: "Stocks and Shares ISAs",
+        summary: "Learn how the ISA tax wrapper and annual allowance work, and what they do not protect against.",
+        estimatedMinutes: 8,
+        stage: "Investing in the UK",
+        track: "manual",
+        sources: ["https://www.gov.uk/individual-savings-accounts/how-isas-work"],
+      },
+      {
+        slug: "uk-lifetime-isas",
+        title: "Lifetime ISAs",
+        summary: "Understand the Lifetime ISA bonus, eligible uses and withdrawal conditions.",
+        estimatedMinutes: 8,
+        stage: "Investing in the UK",
+        track: "manual",
+        sources: ["https://www.gov.uk/lifetime-isa"],
+      },
+      {
+        slug: "uk-sipps-and-personal-pensions",
+        title: "SIPPs and personal pensions",
+        summary: "Explore investment choice, pension tax relief and contribution limits.",
+        estimatedMinutes: 9,
+        stage: "Investing in the UK",
+        track: "manual",
+        sources: [
+          "https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief",
+          "https://www.gov.uk/tax-on-your-private-pension/annual-allowance",
+        ],
+      },
+      {
+        slug: "uk-workplace-pensions",
+        title: "Workplace pensions and auto-enrolment",
+        summary: "See how qualifying earnings and employer contributions fit into workplace pensions.",
+        estimatedMinutes: 8,
+        stage: "Investing in the UK",
+        track: "manual",
+        sources: ["https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay"],
+      },
+      {
+        slug: "uk-investing-tax-basics",
+        title: "UK investing tax basics",
+        summary: "Learn the basics of capital gains, dividends and allowances outside tax-advantaged accounts.",
+        estimatedMinutes: 9,
+        stage: "Investing in the UK",
+        track: "manual",
+        sources: [
+          "https://www.gov.uk/capital-gains-tax/allowances",
+          "https://www.gov.uk/tax-on-dividends",
+        ],
+      },
+      {
+        slug: "uk-platforms-and-fees",
+        title: "Choosing a platform and understanding fees",
+        summary: "Compare common investment platform and fund charges without being directed to a provider.",
+        estimatedMinutes: 8,
+        stage: "Investing in the UK",
+        track: "manual",
+        sources: ["https://www.moneyhelper.org.uk/en/savings/types-of-savings/investing-beginners-guide"],
       },
     ],
   },

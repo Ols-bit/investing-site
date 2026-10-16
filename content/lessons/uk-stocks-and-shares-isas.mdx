@@ -1,0 +1,42 @@
+---
+title: "Stocks and Shares ISAs"
+description: "Learn how a UK Stocks and Shares ISA works, what its tax treatment does and does not protect, and how its annual allowance is used."
+---
+
+import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
+import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
+
+A <Term>Stocks and Shares ISA</Term> is a UK account that can hold eligible investments. It is a tax wrapper: income and gains inside the ISA are generally free from UK tax, but the value of investments can still fall.
+
+## How it works
+
+The ISA allowance is a limit on how much you can pay into eligible ISAs during a tax year. You can split it between permitted ISA types, subject to the rules for each. The Lifetime ISA has its own contribution limit within the overall annual ISA allowance.
+
+An ISA does not make an investment safer, guarantee a return, or remove charges. You generally cannot move ordinary shares you already own directly into an ISA; check the current transfer rules before acting.
+
+## Worked example
+
+For the {ukFigures.taxYear} tax year, the annual ISA allowance is £{formatUKPounds(ukFigures.isaAnnualAllowance)}. If someone contributes £{formatUKPounds(ukFigures.examples.isaContribution)} to eligible ISAs, the arithmetic leaves £{formatUKPounds(ukExamples.isaRemainingAllowance)} of that allowance unused. This is an illustration of the limit, not a suggestion about how much to contribute.
+
+## Rules can change
+
+Tax rules can change and may depend on your circumstances. Check current GOV.UK guidance before making a decision. This lesson is educational and is not personal advice.
+
+<Quiz
+  lessonId="uk-stocks-and-shares-isas"
+  questions={[
+    {
+      question: "What does the ISA tax wrapper do?",
+      options: ["It removes investment risk.", "It changes the tax treatment of eligible savings and investments.", "It guarantees a return."],
+      correctAnswerIndex: 1,
+      explanation: "An ISA can provide tax advantages under its rules, but investments inside it can still lose value."
+    },
+    {
+      question: "What does an ISA allowance limit?",
+      options: ["How much can be paid into eligible ISAs during a tax year.", "The amount an investment can fall.", "The annual fee a provider can charge."],
+      correctAnswerIndex: 0,
+      explanation: "The allowance concerns contributions, not investment performance or fees."
+    }
+  ]}
+/>

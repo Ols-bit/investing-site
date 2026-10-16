@@ -8,10 +8,13 @@ import { BrandWordmark } from "@/components/brand-wordmark";
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/manual", label: "Manual" },
+  { href: "/paths", label: "Paths" },
   { href: "/markets", label: "Markets" },
   { href: "/news", label: "News" },
   { href: "/glossary", label: "Glossary" },
   { href: "/tools", label: "Tools" },
+  { href: "/risk-quiz", label: "Risk quiz" },
+  { href: "/profile", label: "Profile" },
 ];
 
 function isCurrentPage(pathname: string, href: string) {

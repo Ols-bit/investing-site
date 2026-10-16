@@ -1,0 +1,40 @@
+---
+title: "UK investing tax basics"
+description: "A plain-English introduction to UK tax on capital gains and dividends, relevant allowances and why an ISA's treatment differs."
+---
+
+import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
+import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
+
+UK tax can depend on the type of income, account, asset, tax band and your personal circumstances. A <Term>capital gain</Term> is generally the profit when an asset is sold for more than its allowable cost. <Term>Dividend</Term> income is a distribution a company may choose to pay to shareholders.
+
+## Allowances are not investment protection
+
+Outside tax-advantaged accounts, the <Term>annual exempt amount</Term> for an individual's capital gains is £{formatUKPounds(ukFigures.capitalGainsAnnualExemptAmount)} for the {ukFigures.taxYear} tax year. The <Term>dividend allowance</Term> is £{formatUKPounds(ukFigures.dividendAllowance)}. Income or gains above relevant allowances may be taxable; the rate and reporting rules depend on circumstances. Gains and dividends within an ISA are generally not subject to UK income tax or capital gains tax.
+
+## Worked example
+
+If an illustrative taxable gain is £{formatUKPounds(ukFigures.examples.taxableGainBeforeAllowance)}, subtracting the annual exempt amount leaves £{formatUKPounds(ukExamples.gainAfterAnnualExemptAmount)} above that allowance. If illustrative dividend income is £{formatUKPounds(ukFigures.examples.dividendsReceived)}, £{formatUKPounds(ukExamples.dividendsAboveAllowance)} is above the dividend allowance. These are arithmetic examples, not tax calculations: losses, other income, eligibility and reporting rules can change the result.
+
+## Rules can change
+
+Tax rules and figures can change each tax year. Check current GOV.UK information or consult a qualified tax professional. This lesson is educational and is not personal advice.
+
+<Quiz
+  lessonId="uk-investing-tax-basics"
+  questions={[
+    {
+      question: "What is a capital gain in general terms?",
+      options: ["A profit on selling an asset above its allowable cost.", "A fee charged by an investment platform.", "A guaranteed dividend."],
+      correctAnswerIndex: 0,
+      explanation: "A capital gain is generally the profit made when an asset is sold above its allowable cost."
+    },
+    {
+      question: "Does an allowance mean that every investor owes no tax?",
+      options: ["Yes, in every account.", "No, the outcome depends on the allowance, account and personal circumstances.", "Yes, if the investment has fallen in value."],
+      correctAnswerIndex: 1,
+      explanation: "Tax rules depend on the account, income, gains, eligibility and circumstances."
+    }
+  ]}
+/>

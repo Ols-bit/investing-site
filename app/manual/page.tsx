@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { FadeInSection } from "@/components/fade-in-section";
 import { ManualStages } from "@/components/manual-stages";
+import { ContinueWhereLeftOff } from "@/components/learning-paths";
 import { manualStages } from "@/lib/lessons";
 import { createPageMetadata } from "@/lib/site";
 
@@ -17,7 +18,7 @@ export default function ManualPage() {
       <FadeInSection className="mb-12 grid gap-8 border-b-2 border-slate-950 pb-10 sm:grid-cols-[1.2fr_0.8fr] sm:items-end">
         <div>
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-teal-800">
-            A practical guide · 9 lessons
+            A practical guide · {manualStages.reduce((count, stage) => count + stage.lessons.length, 0)} lessons
           </p>
           <h1 className="max-w-4xl text-5xl font-extrabold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
             The trading manual.
@@ -33,6 +34,9 @@ export default function ManualPage() {
               Read the full disclaimer
             </Link>
           </p>
+          <div className="mt-5">
+            <ContinueWhereLeftOff />
+          </div>
         </div>
       </FadeInSection>
       <ManualStages stages={manualStages} />

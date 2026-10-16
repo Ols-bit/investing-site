@@ -6,6 +6,7 @@ import { LessonProgressProvider } from "@/components/lesson-progress";
 import { LenisProvider } from "@/components/lenis-provider";
 import { BrandWordmark } from "@/components/brand-wordmark";
 import { SiteNavigation } from "@/components/site-navigation";
+import { BadgeToast } from "@/components/profile";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <LenisProvider>
               <div className="flex min-h-screen flex-1 flex-col">
                 <SiteNavigation />
+                <BadgeToast />
                 <div id="main-content" tabIndex={-1} className="flex flex-1 flex-col scroll-mt-20">
                   {children}
                 </div>
@@ -72,6 +74,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                     <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm font-semibold sm:grid-cols-3">
                       {[
                         ["/manual", "Manual"],
+                        ["/paths", "Paths"],
+                        ["/profile", "Profile"],
+                        ["/risk-quiz", "Risk quiz"],
                         ["/markets", "Markets"],
                         ["/news", "News"],
                         ["/glossary", "Glossary"],

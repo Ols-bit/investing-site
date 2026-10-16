@@ -1,0 +1,40 @@
+---
+title: "Choosing a platform and understanding fees"
+description: "Compare the types of charges a UK investment platform may apply without recommending a particular firm or product."
+---
+
+import { Quiz } from "@/components/quiz";
+import { Term } from "@/components/term";
+import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
+
+An <Term>investment platform</Term> is a service used to hold an account and access investments. Compare the service, account types, available investments and support as well as its charges. There is no single platform that is right for everyone, and this lesson does not recommend a provider.
+
+## Costs to compare
+
+Look for platform or account charges, fund ongoing charges, dealing fees, foreign-exchange costs, transfer or exit fees and any other transaction costs. Check whether a fee is a percentage, a fixed amount, or both, and how often it is taken. A lower charge does not make an investment suitable or remove market risk.
+
+## Worked example
+
+On an illustrative balance of £{formatUKPounds(ukFigures.examples.platformBalance)}, a {ukFigures.examples.platformFeePercent}% annual platform fee is £{formatUKPounds(ukExamples.annualPlatformFee)}. A separate {ukFigures.examples.investmentChargePercent}% investment charge is £{formatUKPounds(ukExamples.annualInvestmentCharge)}. Together, those example charges total £{formatUKPounds(ukExamples.annualPlatformFee + ukExamples.annualInvestmentCharge)} over a year if the balance stays unchanged. Actual charges and balances can differ.
+
+## Rules can change
+
+Platform services, charges and account rules can change. Read current fee schedules and account terms before making a decision. This lesson is educational and is not personal advice.
+
+<Quiz
+  lessonId="uk-platforms-and-fees"
+  questions={[
+    {
+      question: "Why compare more than a platform's headline fee?",
+      options: ["Other charges, services and available accounts may also matter.", "The headline fee predicts investment returns.", "A low fee removes market risk."],
+      correctAnswerIndex: 0,
+      explanation: "Total costs and the service offered can include several different items."
+    },
+    {
+      question: "What does a lower fee tell you about investment risk?",
+      options: ["It removes investment risk.", "It guarantees better performance.", "It does not remove market risk or establish suitability."],
+      correctAnswerIndex: 2,
+      explanation: "Fees and investment risk are separate considerations."
+    }
+  ]}
+/>
