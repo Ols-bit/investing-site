@@ -2,22 +2,27 @@
 
 import Link from "next/link";
 import { useLessonProgress } from "@/components/lesson-progress";
+import { learningPaths } from "@/content/paths";
 import type { LearningPath } from "@/content/paths";
-import { getLessonBySlug, lessons as coreLessons, manualLessons } from "@/lib/lessons";
+import { getLessonBySlug } from "@/lib/lessons";
 
 export function LearningPathCards({ paths }: { paths: LearningPath[] }) {
   const { progress, ready } = useLessonProgress();
 
   return (
-    <div className="grid gap-8 md:grid-cols-3">
+    <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
       {paths.map((path, index) => {
         const completed = path.lessonSlugs.filter((slug) => progress[slug]?.completed).length;
         const percent = path.lessonSlugs.length ? Math.round((completed / path.lessonSlugs.length) * 100) : 0;
         return (
           <article key={path.slug} aria-busy={!ready} className="flex flex-col border-t-4 border-teal-700 bg-white p-5 sm:p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-800">Path {String(index + 1).padStart(2, "0")}</p>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-800">Path {String(index + 1).padStart(2, "0")}</p>
+              {index === 0 && <span className="bg-amber-300 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-950">Start here</span>}
+            </div>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-slate-950">{path.title}</h2>
             <p className="mt-3 flex-1 text-sm leading-6 text-slate-700">{path.description}</p>
+            <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-slate-600">{path.lessonSlugs.length} lessons</p>
             <div className="mt-6">
               <div className="mb-2 flex justify-between gap-2 text-xs font-semibold text-slate-600">
                 <span>{completed} of {path.lessonSlugs.length} lessons complete</span><span>{percent}%</span>
@@ -71,7 +76,11 @@ export function PathLessonList({ path }: { path: LearningPath }) {
 
 export function ContinueWhereLeftOff() {
   const { progress, ready } = useLessonProgress();
-  const lessonSequence = [...manualLessons, ...coreLessons];
+  const lessonSequence = Array.from(
+    new Set<string>(learningPaths.flatMap((path) => path.lessonSlugs)),
+  )
+    .map(getLessonBySlug)
+    .filter((lesson) => lesson !== undefined);
   const nextLesson = lessonSequence.find((lesson) => !progress[lesson.slug]?.completed);
 
   if (!ready || !nextLesson) return null;

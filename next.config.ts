@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.1.112"],
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   experimental: {
+    agentUpgrade: "security",
     agentFeedback: true,
   },
   cacheComponents: true,

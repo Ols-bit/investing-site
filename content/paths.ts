@@ -1,3 +1,5 @@
+import { manualLessons } from "@/lib/lessons";
+
 export type LearningPath = {
   slug: string;
   title: string;
@@ -9,7 +11,7 @@ export const learningPaths: LearningPath[] = [
   {
     slug: "total-beginner",
     title: "Total beginner",
-    description: "Start with ownership, learn how markets work, then build a simple foundation for understanding risk.",
+    description: "Start with shares, markets, diversification, and a simple investing plan.",
     lessonSlugs: [
       "manual-what-is-a-stock",
       "manual-how-markets-work",
@@ -23,7 +25,7 @@ export const learningPaths: LearningPath[] = [
   {
     slug: "saving-for-a-house",
     title: "Saving for a house",
-    description: "Explore goals, time horizons, UK savings and investment accounts, and the trade-offs around risk.",
+    description: "Explore goals, timelines, and UK accounts for saving toward a home.",
     lessonSlugs: [
       "why-invest",
       "accounts-and-taxes",
@@ -39,10 +41,10 @@ export const learningPaths: LearningPath[] = [
   {
     slug: "pensions-and-isas",
     title: "Pensions and ISAs",
-    description: "Learn how UK tax wrappers and pensions differ, and what fees and investment risk mean in context.",
+    description: "Compare ISAs, pensions, fees, tax rules, and investment risk.",
     lessonSlugs: [
-      "accounts-and-taxes",
       "uk-stocks-and-shares-isas",
+      "accounts-and-taxes",
       "uk-lifetime-isas",
       "uk-sipps-and-personal-pensions",
       "uk-workplace-pensions",
@@ -53,5 +55,11 @@ export const learningPaths: LearningPath[] = [
       "risk-return-and-diversification",
       "building-a-simple-plan",
     ],
+  },
+  {
+    slug: "how-to-trade",
+    title: "How to Trade",
+    description: "Learn how shares, orders, market data, and risk fit together.",
+    lessonSlugs: manualLessons.map((lesson) => lesson.slug),
   },
 ];

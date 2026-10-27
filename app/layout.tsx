@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Bricolage_Grotesque, Geist } from "next/font/google";
+import { Bricolage_Grotesque, Caveat, Geist } from "next/font/google";
 import { AgeGroupProvider, ChangeAgeGroupButton } from "@/components/age-group-provider";
 import { LessonProgressProvider } from "@/components/lesson-progress";
 import { LenisProvider } from "@/components/lenis-provider";
 import { BrandWordmark } from "@/components/brand-wordmark";
 import { SiteNavigation } from "@/components/site-navigation";
 import { BadgeToast } from "@/components/profile";
+import { SubscribeForm } from "@/components/subscribe-form";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -17,6 +18,11 @@ const geistSans = Geist({
 
 const display = Bricolage_Grotesque({
   variable: "--font-bricolage",
+  subsets: ["latin"],
+});
+
+const handwriting = Caveat({
+  variable: "--font-handwriting",
   subsets: ["latin"],
 });
 
@@ -48,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${display.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${display.variable} ${handwriting.variable} h-full antialiased`}
     >
       <body className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-teal-300 selection:text-slate-950">
         <AgeGroupProvider>
@@ -69,11 +75,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                       <p className="mt-4 max-w-lg text-sm leading-6 text-slate-200">
                         For education, not financial advice. Investing involves risk, including the loss of capital.
                       </p>
+                      <div className="mt-7 max-w-xl">
+                        <h2 className="mb-3 text-xl font-bold text-white">Get the weekly email</h2>
+                        <SubscribeForm variant="footer" />
+                      </div>
                       <ChangeAgeGroupButton />
                     </div>
                     <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm font-semibold sm:grid-cols-3">
                       {[
-                        ["/manual", "Manual"],
+                        ["/learn", "Learn"],
                         ["/paths", "Paths"],
                         ["/profile", "Profile"],
                         ["/risk-quiz", "Risk quiz"],

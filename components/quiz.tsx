@@ -2,7 +2,9 @@
 
 import { useId, useState } from "react";
 
+import { Recap } from "@/components/lesson-recap";
 import { useLessonProgress } from "@/components/lesson-progress";
+import { getLessonBySlug } from "@/lib/lessons";
 
 export type QuizQuestion = {
   question: string;
@@ -177,5 +179,18 @@ export function Quiz({ lessonId, questions }: QuizProps) {
         </div>
       )}
     </section>
+  );
+}
+
+export function LessonQuiz(props: QuizProps) {
+  const summary = getLessonBySlug(props.lessonId)?.summary;
+
+  return (
+    <>
+      <Recap label="Remember this">
+        {summary ?? "Keep the key ideas from this lesson in mind as you check your understanding."}
+      </Recap>
+      <Quiz {...props} />
+    </>
   );
 }

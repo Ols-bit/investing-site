@@ -28,10 +28,10 @@ export function HomeStartHere() {
           <div className="flex flex-wrap gap-3 sm:justify-self-end">
             <ContinueWhereLeftOff />
             <Link
-              href="/manual"
+              href="/learn"
               className="inline-flex min-h-12 items-center justify-center gap-4 border-2 border-slate-950 px-5 text-sm font-bold text-slate-950 transition-colors hover:bg-slate-950 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-950"
             >
-              Start the manual <span aria-hidden="true">→</span>
+              Explore learning paths <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>

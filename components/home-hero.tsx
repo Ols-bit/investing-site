@@ -44,7 +44,7 @@ export function HomeHero() {
             {SITE_DESCRIPTION}
           </p>
           <Link
-            href="/manual"
+            href="/learn"
             className="mt-9 inline-flex min-h-14 items-center justify-center gap-5 bg-slate-950 px-7 text-base font-bold text-white transition-transform hover:translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700"
           >
             Start learning

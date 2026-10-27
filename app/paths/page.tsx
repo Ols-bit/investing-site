@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata(
   "Learning paths",
-  "Guided lesson sequences for investing beginners, saving for a house, and learning about UK pensions and ISAs.",
+  "Guided investing lesson sequences, from the basics to trading and UK accounts.",
   "/paths",
 );
 

@@ -7,7 +7,7 @@ import { BrandWordmark } from "@/components/brand-wordmark";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
-  { href: "/manual", label: "Manual" },
+  { href: "/learn", label: "Learn" },
   { href: "/paths", label: "Paths" },
   { href: "/markets", label: "Markets" },
   { href: "/news", label: "News" },
@@ -151,7 +151,7 @@ export function SiteNavigation() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <Link
-            href="/manual"
+            href="/learn"
             className="inline-flex min-h-11 items-center justify-center bg-slate-950 px-5 text-sm font-bold text-white transition-transform hover:translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700"
           >
             Start learning
@@ -219,7 +219,7 @@ export function SiteNavigation() {
               );
             })}
             <Link
-              href="/manual"
+              href="/learn"
               onClick={closeMenu}
               className="mt-8 inline-flex min-h-14 items-center justify-center bg-slate-950 px-6 text-base font-bold text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700"
             >

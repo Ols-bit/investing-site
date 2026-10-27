@@ -301,6 +301,25 @@ export const manualStages: ManualStage[] = [
 
 export const manualLessons = manualStages.flatMap((stage) => stage.lessons);
 
+export const lessonQuizSlugs = new Set([
+  "why-invest",
+  "manual-what-is-a-stock",
+  "manual-how-markets-work",
+  "manual-order-types",
+  "manual-reading-quotes",
+  "manual-reading-charts",
+  "manual-diversification",
+  "manual-position-sizing",
+  "manual-fees-and-taxes",
+  "manual-beginner-mistakes",
+  "uk-stocks-and-shares-isas",
+  "uk-lifetime-isas",
+  "uk-sipps-and-personal-pensions",
+  "uk-workplace-pensions",
+  "uk-investing-tax-basics",
+  "uk-platforms-and-fees",
+]);
+
 export function getLessonBySlug(slug: string) {
   return [...lessons, ...manualLessons].find((lesson) => lesson.slug === slug);
 }

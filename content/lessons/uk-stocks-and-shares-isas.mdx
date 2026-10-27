@@ -3,21 +3,49 @@ title: "Stocks and Shares ISAs"
 description: "Learn how a UK Stocks and Shares ISA works, what its tax treatment does and does not protect, and how its annual allowance is used."
 ---
 
-import { Quiz } from "@/components/quiz";
+import { LessonQuiz as Quiz } from "@/components/quiz";
 import { Term } from "@/components/term";
 import { formatUKPounds, ukFigures, ukExamples } from "@/content/uk-figures";
 
-A <Term>Stocks and Shares ISA</Term> is a UK account that can hold eligible investments. It is a tax wrapper: income and gains inside the ISA are generally free from UK tax, but the value of investments can still fall.
+<Definition term="Stocks and Shares ISA">
+A <Term>Stocks and Shares ISA</Term> is a UK account that can hold eligible investments. It is a <Highlight color="blue">tax wrapper</Highlight>: income and gains inside the ISA are generally free from UK tax, but the value of investments can still fall.
+</Definition>
+
+<KeyIdea>
+An ISA changes how eligible investments are taxed. It does not change the investment's risk or guarantee a return.
+</KeyIdea>
 
 ## How it works
 
-The ISA allowance is a limit on how much you can pay into eligible ISAs during a tax year. You can split it between permitted ISA types, subject to the rules for each. The Lifetime ISA has its own contribution limit within the overall annual ISA allowance.
+The ISA allowance is a limit on how much you can pay into eligible ISAs during a tax year. You can split it between permitted ISA types, subject to the rules for each.
 
-An ISA does not make an investment safer, guarantee a return, or remove charges. You generally cannot move ordinary shares you already own directly into an ISA; check the current transfer rules before acting.
+The Lifetime ISA has its own contribution limit within the overall annual ISA allowance.
+
+An ISA does not make an investment safer, guarantee a return, or remove charges.
+
+You generally cannot move ordinary shares you already own directly into an ISA; check the current transfer rules before acting.
+
+<Watch>
+Tax advantages do not prevent an investment from falling in value, and rules can change. Check current GOV.UK guidance for your circumstances.
+</Watch>
 
 ## Worked example
 
+<Example>
 For the {ukFigures.taxYear} tax year, the annual ISA allowance is £{formatUKPounds(ukFigures.isaAnnualAllowance)}. If someone contributes £{formatUKPounds(ukFigures.examples.isaContribution)} to eligible ISAs, the arithmetic leaves £{formatUKPounds(ukExamples.isaRemainingAllowance)} of that allowance unused. This is an illustration of the limit, not a suggestion about how much to contribute.
+</Example>
+
+<Steps>
+  <li>Start with the annual ISA allowance for the tax year shown.</li>
+  <li>Subtract the example contribution from that allowance.</li>
+  <li>The result is the unused allowance in this illustration, not a target.</li>
+</Steps>
+
+<Diagram type="risk-reward" />
+
+<Margin>
+An account's tax treatment and the investments it holds are two separate things.
+</Margin>
 
 ## Rules can change
 

@@ -26,6 +26,10 @@ The site uses [`next/font`](https://nextjs.org/docs/app/building-your-applicatio
 
 The Markets and News pages use Finnhub for stock searches, quotes, movers and news. Set `FINNHUB_API_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration for deployment. Historical stock charts and the "What if I'd invested" calculator use Twelve Data and require `TWELVEDATA_API_KEY` in the same server-side configuration. Keep both API keys private; do not rename them with a `NEXT_PUBLIC_` prefix.
 
+## Weekly email signup
+
+Email signups are stored in Supabase; the site does not send emails. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local` for local development and in your hosting provider's server-side environment configuration. Keep the service role key private and do not use a `NEXT_PUBLIC_` prefix. Apply [`supabase/subscribers.sql`](./supabase/subscribers.sql) to create the subscribers table.
+
 ## Site metadata
 
 Set `NEXT_PUBLIC_SITE_URL` to the site's public HTTPS origin, such as `https://your-domain.example`, in `.env.local` and your deployment environment. It is used for canonical links, the sitemap, robots metadata and structured data. A placeholder fallback is used when it is not set, so configure the real production URL before launch. This variable is a public URL, not a secret.
